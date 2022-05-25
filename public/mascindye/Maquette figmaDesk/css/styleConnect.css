@@ -1,0 +1,469 @@
+/*@import url("https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500&display=swap");
+/*$import url("https://fonts.googleapis.com/css2?family=Sofia&display=swap");*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 1rem;
+  font-family: "Saira Extra Condensed", sans-serif;
+}
+
+body {
+  font-family: "Saira Extra Condensed", sans-serif;
+  width: 100%;
+  height: 100vh;
+}
+
+header {
+  height: 90px;
+  width: 100%;
+  min-width: 200px;
+}
+
+header .burger svg {
+  stroke: #fff;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 60px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+h1 {
+  color: #bf3b40;
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+h2 {
+  font-family: "Sofia", cursive;
+  color: #0066ff;
+  font-weight: lighter;
+  font-size: 0.6rem;
+}
+
+.entete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.boutique {
+  margin-left: 5px;
+}
+
+.search {
+  width: 35%;
+  height: 20px;
+  font-size: 10px;
+}
+
+ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  list-style: none;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+li > a {
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.banner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: columns;
+          flex-direction: columns;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f5f5f5;
+  background-image: url("../images/fe_8.jpg");
+  height: 80%;
+  width: 100%;
+}
+
+form {
+  margin-top: 60px;
+  background-color: #fff;
+  padding: 40px 60px;
+  border-radius: 10px;
+  min-width: 150px;
+  font-family: "Sofia", cursive;
+}
+
+form h1 {
+  color: #bf3b40;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+form .social-media {
+  margin-top: -10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+form .social-media p {
+  padding-top: 20px;
+  width: 20px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+form p.choose-email {
+  text-align: center;
+}
+
+form .inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+form .inputs input[type='email'], input[type='password'] {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #080ed9;
+  outline: none;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+form p.oubli {
+  text-align: right;
+  margin-top: 0;
+}
+
+form p.oubli a {
+  font-size: .8rem;
+  font-weight: 500;
+  font-family: "Saira Extra Condensed", sans-serif;
+  color: black;
+}
+
+form p.inscription {
+  font-size: 0.9rem;
+  font-family: "Saira Extra Condensed", sans-serif;
+  text-align: right;
+  padding-top: 35px;
+  color: rgba(0, 0, 0, 0.603);
+}
+
+form p.inscription a {
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: "Saira Extra Condensed", sans-serif;
+  color: #bf3b40;
+}
+
+form button {
+  padding: 15px 25px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 15px;
+  color: #fff;
+  background-color: #bf3b40;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+form button:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+form .center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer {
+  font-family: "saira-extracondensed", sans-serif;
+  font-weight: 400px;
+  height: 150px;
+}
+
+.av {
+  text-align: center;
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 5px;
+  color: #fff;
+  background-color: black;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  grid: 1fr 1fr/1fr 1fr;
+  background-color: black;
+  color: #fff;
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+footer p a {
+  color: #fff;
+}
+
+.d1,
+.d2,
+.d3,
+.d4 {
+  padding: 0 25px;
+}
+
+.bas {
+  width: 23px;
+  height: auto;
+}
+
+.footer-last {
+  background-color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin: 5px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rezo {
+  text-align: center;
+  color: black;
+}
+
+i {
+  margin: 0 10px 0 10px;
+}
+
+@media only screen and (max-width: 400px) {
+  header {
+    position: relative;
+    background-color: black;
+    height: 60px;
+  }
+  .grand {
+    display: none;
+  }
+  div.bar {
+    height: 55px;
+  }
+  #menu:not(:target) {
+    display: none;
+  }
+  #menu:target {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.603);
+    width: 100px;
+  }
+  .lien {
+    background-color: rgba(0, 0, 0, 0.027);
+    opacity: 0.7;
+  }
+  li > a {
+    color: #f7e020;
+    font-weight: 400px;
+  }
+  h1 {
+    font-size: 0.8rem;
+  }
+  h2 {
+    font-size: 0.5rem;
+  }
+  ul {
+    display: none;
+  }
+  .burger {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .banner {
+    background-image: url("../images/fi_6.jpg");
+  }
+  .form {
+    padding: 40px -60px;
+  }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 767.98px) {
+  body {
+    height: 100vh;
+  }
+  #menu:not(:target) {
+    display: none;
+  }
+  #menu:target {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.603);
+    width: 200px;
+  }
+  .grand {
+    display: none;
+  }
+  div.bar {
+    height: 50px;
+  }
+  header {
+    height: 55px;
+    position: fixed;
+  }
+  h1 {
+    font-size: 1rem;
+  }
+  h2 {
+    font-size: 0.7rem;
+  }
+  ul.liens {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .lien > a {
+    color: black;
+  }
+  .lien > a::before {
+    font-size: 1.6rem;
+    display: block;
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: #bf3b40;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  .lien:hover > a::before {
+    width: 100%;
+    background-color: #080ed9;
+  }
+  li {
+    background-color: #f7e020;
+    opacity: 0.7;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  header {
+    height: 85px;
+    top: 0;
+  }
+  .burger,
+  .petit {
+    display: none;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
+  h2 {
+    font-size: 0.9rem;
+  }
+  .search {
+    width: 400px;
+    height: 20px;
+    font-size: 15px;
+  }
+  ul {
+    background-color: #bf3b40;
+    opacity: 1;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 100%;
+  }
+  li.lien {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 0;
+  }
+  li:hover {
+    background-color: blue;
+  }
+  .lien > a {
+    font-size: 1.2rem;
+    margin: 0 5px;
+    color: #f7e020;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+  .lien > a::before {
+    font-size: 1.6rem;
+    display: block;
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: red;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  .lien:hover > a::before {
+    width: 100%;
+    background-color: blue;
+  }
+  .foot, .footer-last {
+    font-size: 1rem;
+  }
+  .av {
+    font-size: 1.3rem;
+  }
+}
+/*# sourceMappingURL=styleConnect.css.map */

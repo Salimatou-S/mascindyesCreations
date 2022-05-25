@@ -1,20 +1,107 @@
-{% extends 'base.html.twig' %}
+{% extends 'mascindye.html.twig' %}
 
 {% block title %}Hello TestController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<main>
+        <div class="container-fluid ">
+            <div class="col-lg ">
+                <div id="carouselExampleFade " class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{asset('mascindye/images/montage1car.jpg')}}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{asset('mascindye/images/montage2car.jpg')}}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{asset('mascindye/images/bijoucopcar.jpg')}}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="cat">
+            <span class="cat">catégories</span>
+        </div>
+        <div class="container categorie">
+            <div class="row">
+                <div class="col-lg-4 g-8">
+                    <img src="{{asset('mascindye/images/fecomp10-1.jpg')}}" height="350" alt="...">
+                    <h2 class="text-center femme">COLLECTION FEMME</h5>
+                    <p><a class="btn btn-warning" href="#" role="button">Découvrir</a></p>
+                </div>
+                <div class="col-lg-4 g-8">
+                    <img src="{{asset('mascindye/images/ficomp-1.jpg')}}" height="350" alt="...">
+                    <h2 class="text-center fille">COLLECTION FILLE</h5>
+                    <p><a class="btn btn-danger" href="#" role="button">Découvrir</a></p>
+                </div>
+                <div class="col-lg-4 g-8">
+                    <img src="{{asset('mascindye/images/accessoires3.jpg')}}" height="350" alt="...">
+                    <h2 class="text-center accessoires">ACCESSOIRES</h5>
+                    <p><a class="btn btn-primary" href="#" role="button">Découvrir</a></p>
+                </div>
+            </div>
+        <!-- <div class="col-lg-5 d-none d-lg-block">
+                <div class="embed-responsive embed-responsive-16by9  ">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Xa29UDKMSRo "
+                        height="470px" width="450px" allowfullscreen></iframe>
+                </div>
+            </div>  -->
+        </div>
+        <div class="nouv">
+            <p class="nouv">Nouveautés</p>
+        </div>
+        <div class="container marketing">
+            <div class="row">
+                <div class="col-lg-2">
+                    <img src="{{asset('mascindye/images/vente6.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+                    <h2>Elegania</h2>
+                    <p>Collection femme - chic et décontractée</p>
+                    <span>150€</span>
+                </div>
+                <div class="col-lg-2">
+                    <img src="{{asset('mascindye/images/vente7.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+                    <h2>Petunia</h2>
+                    <p>Accessoires - Fait mains</p>
+                    <span>90€</span>
+                </div>
+                <div class="col-lg-2">
+                    <img src="{{asset('mascindye/images/vente8.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+                    <h2>Lolita</h2>
+                    <p>Collection femme - Chic et décontractée</p>
+                    <span>150€</span>
+                </div>
+                <div class="col-lg-2">
+                    <img src="{{asset('mascindye/images/vente9.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+                    <h2>Magenta</h2>
+                    <p>Accessoires - Sac et chaussures</p>
+                    <span>150€</span>
+                </div>
+                <div class="col-lg-2">
+                    <img src="{{asset('mascindye/images/vente11.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+                    <h2>Julia</h2>
+                    <p>Collection fille - Robe de cérémonie</p>
+                    <span>60€</span>
+                </div>
+                <div class="col-lg-2">
+                    <img src="{{asset('mascindye/images/fi_4-mini.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+                    <h2>Sherry</h2>
+                    <p>Collection fille - Tenue de soirée</p>
+                    <span>70€</span>
+                </div>
+            </div>
+        </div>
+    </main>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/MascindyesCreations/src/Controller/TestController.php'|file_link(0) }}">src/Controller/TestController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/MascindyesCreations/templates/test/index.html.twig'|file_link(0) }}">templates/test/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
