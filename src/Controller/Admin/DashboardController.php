@@ -8,6 +8,7 @@ use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\Admin\ProduitCrudController;
 use App\Entity\Fournisseur;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -46,11 +47,30 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::section('E-commerce');
+
+        yield MenuItem::subMenu('Produits','fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Ajouter produit','fas fa-plus',Produit::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir produits','fas fa-eye',Produit::class),
+        ]);
+
+        yield MenuItem::subMenu('Categories','fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Ajouter Categorie','fas fa-plus',Category::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir categories','fas fa-eye',Category::class),
+        ]);
+
+        yield MenuItem::subMenu('Fournisseurs','fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Ajouter Categorie','fas fa-plus',Fournisseur::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir categories','fas fa-eye',Fournisseur::class),
+        ]);
+        
+
+
+       /*  yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Produits', 'fas fa-list', Produit::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class); 
-        yield MenuItem::linkToCrud('Fournisseur', 'fas fa-list', Fournisseur::class); 
+        yield MenuItem::linkToCrud('Fournisseur', 'fas fa-list', Fournisseur::class); */ 
         //yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
