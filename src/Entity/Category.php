@@ -38,9 +38,11 @@ class Category
     #[ORM\Column(type: 'boolean')]
     private $active;
 
+    #[Gedmo\Timestampable(on:"update")]
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $updatedAt;
 
+    #[Gedmo\Timestampable(on:"create")]
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 

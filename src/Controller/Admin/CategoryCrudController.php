@@ -22,16 +22,12 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            /* IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
- */
             IdField::new('id')->hideOnForm(),
-            DateTimeField::new('created_at')->hideWhenCreating(),
-            /* DateTimeField::new('updated_at')->hideWhenUpdating(), */
+            DateTimeField::new('created_at')->hideOnForm(),
+            DateTimeField::new('updated_at')->hideOnForm(), 
             TextField::new('name'),
             AssociationField::new('parent'),
-            BooleanField::new('active')/* ->hideWhenCreating() */,
+            BooleanField::new('active')
         
         ];
     }

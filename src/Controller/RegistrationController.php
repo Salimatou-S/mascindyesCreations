@@ -100,15 +100,14 @@ class RegistrationController extends AbstractController
     #[Route('/register2', name: 'app_register2')]
     public function register2( Request $request, ManagerRegistry $doctrine): Response
     {
-        /* $user = new User(); */
         $user= $this->getUser('user');
         
         $form = $this->createForm(Registration2FormType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-/*             $user->setUser($this->getUser());
- */            $em = $doctrine->getManager();
+           
+            $em = $doctrine->getManager();
             $em->flush();
             return $this->redirectToRoute('home');
         }
