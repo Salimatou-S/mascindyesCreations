@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProduitRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -42,9 +45,11 @@ class Produit
     #[ORM\Column(type: 'boolean')]
     private $active;
 
+    #[Gedmo\Timestampable(on:"update")]
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $updatedAt;
 
+    #[Gedmo\Timestampable(on:"create")]
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 

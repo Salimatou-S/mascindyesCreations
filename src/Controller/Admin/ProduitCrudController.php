@@ -33,6 +33,7 @@ class ProduitCrudController extends AbstractCrudController
             DateTimeField::new('created_at')->hideWhenCreating(),
             TextField::new('nom'),
             AssociationField::new('category'),
+            AssociationField::new('fournisseur'),
             ImageField::new('url_image')->hideOnForm(),
             TextField::new('description')->onlyOnForms(),
             BooleanField::new('active')->hideWhenCreating(),
