@@ -57,6 +57,14 @@ ul .dropdown-menu {
   transition: 0.4s ease-in-out;
 }
 
+
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+.dropdown-toggle::after{
+  border: none;
+}
 .dropdown-item:hover {
   color: #080ed9 !important;
   background: #f7e020 !important;

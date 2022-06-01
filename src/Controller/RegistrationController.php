@@ -3,20 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
+use App\Form\RegistrationFormType;
+use App\Form\Registration2FormType;
 use App\Security\UserAuthenticator;
+use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -30,6 +32,7 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+        
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -68,6 +71,11 @@ class RegistrationController extends AbstractController
         ]);
     }
 
+
+
+
+
+
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
@@ -86,5 +94,28 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('home');
+    }
+
+
+    #[Route('/register2', name: 'app_register2')]
+    public function register2( Request $request, ManagerRegistry $doctrine): Response
+    {
+        /* $user = new User(); */
+        $user= $this->getUser('user');
+        
+        $form = $this->createForm(Registration2FormType::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+/*             $user->setUser($this->getUser());
+ */            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('registration/register2.html.twig', [
+            'form2' => $form->createView(),
+            'user' => $user
+        ]);
     }
 }

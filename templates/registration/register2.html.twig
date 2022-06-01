@@ -1,0 +1,36 @@
+{% extends 'mascindye.html.twig' %}
+
+{% block title %}Register2
+{% endblock %}
+
+{% block body %}
+<main class="mb-4">
+		<div class="container px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-md-10 col-lg-8 col-xl-7">
+					<div class="my-5">
+						<h1>Informations complémentaires</h1>
+                        {{form(form2)}}
+
+						{# {{ form_start(registration2Form) }}
+						{{ form_row(registration2Form.nom) }}
+                        {{ form_row(registration2Form.prenom) }}
+                        {{ form_row(registration2Form.adresse) }}
+                        {{ form_row(registration2Form.ville) }}
+                        {{ form_row(registration2Form.code_postal) }} #}
+						{# {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }} #}
+						{# {{ form_row(registration2Form.agreeTerms, {
+            label: 'J\'accepte les conditions générales d\'utilisation et de vente'
+        }) }}
+
+						<button type="submit" class="btn btn-lg btn-primary">Valider</button>
+						{{ form_end(registrationForm) }} #}
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+{{dump(user)}}
+{% endblock %}

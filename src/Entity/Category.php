@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -18,6 +19,10 @@ class Category
     #[ORM\Column(type: 'string', length: 100)]
     private $name;
 
+     /**
+     * @gedmo\Slug(fields={"name"})
+     */
+
     #[ORM\Column(type: 'string', length: 120)]
     private $slug;
 
@@ -27,9 +32,22 @@ class Category
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
     private $categories;
 
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Produit::class)]
+    private $produits;
+
+    #[ORM\Column(type: 'boolean')]
+    private $active;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $updatedAt;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $createdAt;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->produits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,12 +72,12 @@ class Category
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+   /*  public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
         return $this;
-    }
+    } */
 
     public function getParent(): ?self
     {
@@ -99,6 +117,72 @@ class Category
                 $category->setParent(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Produit>
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+            $produit->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        if ($this->produits->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getCategory() === $this) {
+                $produit->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
