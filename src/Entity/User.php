@@ -52,6 +52,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer', nullable: true)]
     private $telephone;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $pseudo;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -256,6 +259,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTelephone(?int $telephone): self
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }

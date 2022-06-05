@@ -68,31 +68,31 @@
 						</ul>
 					</div>
 					{# <div class="d-flex col-3">
-														
-																	{% if not is_granted("ROLE_USER") %}
-										
-																		<li class="nav-item">
-																			<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
-																		</li>
-																		<li class="nav-item">
-																			<a class="nav-link" href="{{ path('app_login') }}">Login</a>
-																		</li>
-																	{% else %}
-																		<li class="nav-item">
-																			<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-																		</li>
-																	{% endif %}
-																	
-																		<a href="#" class="fas fa-heart"></a>
-																
-																
-																		<a href="#" class="fas fa-user"></a>
-																	
-																
-																		<a href="#" class="fa-solid fa-bag-shopping"></a>
-																	
-																
-															</div> #}
+																			
+																						{% if not is_granted("ROLE_USER") %}
+															
+																							<li class="nav-item">
+																								<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+																							</li>
+																							<li class="nav-item">
+																								<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+																							</li>
+																						{% else %}
+																							<li class="nav-item">
+																								<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+																							</li>
+																						{% endif %}
+																						
+																							<a href="#" class="fas fa-heart"></a>
+																					
+																					
+																							<a href="#" class="fas fa-user"></a>
+																						
+																					
+																							<a href="#" class="fa-solid fa-bag-shopping"></a>
+																						
+																					
+																				</div> #}
 				</div>
 			</nav>
 			<nav class="navbar navbar-expand-lg">
@@ -107,11 +107,16 @@
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="{{path('page_femme')}}" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									vêtements femme
+									Collection femme
 								</a>
 								<ul class="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
 									<li>
-										<a class="dropdown-item" href="{{path('femme_wax')}}"> Femme Wax</a>
+										<a class="dropdown-item" href="{{path('page_femme')}}">Toute la collection
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{path('femme_wax')}}">
+											Femme Wax</a>
 									</li>
 									<li></li>
 									<li>
@@ -121,9 +126,13 @@
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="{{path('page_fille')}}" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									vêtements fille
+									Collection fille
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+									<li>
+										<a class="dropdown-item" href="{{path('page_femme')}}">Toute la collection
+										</a>
+									</li>
 									<li>
 										<a class="dropdown-item" href="{{path('fille_wax')}}">Fille Wax</a>
 									</li>

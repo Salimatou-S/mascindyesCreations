@@ -41,7 +41,8 @@
 
 ul .dropdown-menu {
   padding: 0;
-  background-color: transparent;
+ /*  background-color: transparent; */
+ background: #fff;
 
 }
 

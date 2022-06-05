@@ -16,8 +16,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 
 class ProduitCrudController extends AbstractCrudController
 {
-    /* public const BASE_PATH= 'mascindye/images'; */
-    public const UPLOAD_DIR= 'public/mascindye/images';
+   /*  public const BASE_PATH= 'mascindye/images'; */
+    /* public const UPLOAD_DIR= 'public/mascindye/images';  */
 
     public static function getEntityFqcn(): string
     {
@@ -38,12 +38,16 @@ class ProduitCrudController extends AbstractCrudController
             TextField::new('nom'),
             AssociationField::new('category'),
             AssociationField::new('fournisseur'),
-            ImageField::new('url_image')
+            AssociationField::new('stocks'),
+            /* AssociationField::new('tailles'), */
+            TextField::new('url_image')
                 /* ->setBasePath(self::BASE_PATH) */
-                ->setUploadDir(self::UPLOAD_DIR),
+                /* ->setUploadDir(self::UPLOAD_DIR), */
+               /*  ->setBasePath('mascindye/images') */
+                /* ->setUploadDir('public/mascindye/images') */ ,
             TextField::new('description')->onlyOnForms(),
             MoneyField::new('prix_TTC')->setCurrency('EUR'),
-            BooleanField::new('active')->hideWhenCreating(),
+            BooleanField::new('active'),
         
         ];
     }

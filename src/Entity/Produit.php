@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProduitRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -22,11 +24,9 @@ class Produit
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $description;
 
-    #[ORM\Column(type: 'string', length: 10)]
-    private $taille;
-
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private $stock;
+   
+   /*  #[ORM\Column(type: 'integer', nullable: true)]
+    private $stock; */
 
     #[ORM\Column(type: 'float')]
     private $prix_TTC;
@@ -52,6 +52,28 @@ class Produit
     #[Gedmo\Timestampable(on:"create")]
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $note;
+
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Stock::class)]
+    private $stocks;
+
+    public function __construct()
+    {
+        $this->stocks = new ArrayCollection();
+    }
+
+    
+
+  
+
+    public function __toString()
+    {
+        
+        return $this->nom;
+    }
+
 
     public function getId(): ?int
     {
@@ -82,19 +104,8 @@ class Produit
         return $this;
     }
 
-    public function getTaille(): ?string
-    {
-        return $this->taille;
-    }
 
-    public function setTaille(string $taille): self
-    {
-        $this->taille = $taille;
-
-        return $this;
-    }
-
-    public function getStock(): ?int
+    /* public function getStock(): ?int
     {
         return $this->stock;
     }
@@ -105,7 +116,7 @@ class Produit
 
         return $this;
     }
-
+ */
     public function getPrixTTC(): ?float
     {
         return $this->prix_TTC;
@@ -189,4 +200,50 @@ class Produit
 
         return $this;
     }
+
+    public function getNote(): ?int
+    {
+        return $this->note;
+    }
+
+    public function setNote(?int $note): self
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stock>
+     */
+    public function getStocks(): Collection
+    {
+        return $this->stocks;
+    }
+
+    public function addStock(Stock $stock): self
+    {
+        if (!$this->stocks->contains($stock)) {
+            $this->stocks[] = $stock;
+            $stock->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStock(Stock $stock): self
+    {
+        if ($this->stocks->removeElement($stock)) {
+            // set the owning side to null (unless already changed)
+            if ($stock->getProduit() === $this) {
+                $stock->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
+
+   
 }

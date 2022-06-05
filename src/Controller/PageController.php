@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     #[Route('/femme', name: 'page_femme')]
-    public function femme(): Response
+
+    public function femme(ProduitRepository $produitRepository): Response
     {
+        $produits =$produitRepository->collectionFemme();
         return $this->render('page/femme.html.twig', [
-            'controller_name' => 'FemmeController',
+            'produits' => $produits,
         ]);
     }
 

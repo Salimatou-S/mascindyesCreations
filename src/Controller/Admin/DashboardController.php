@@ -8,6 +8,8 @@ use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\Admin\ProduitCrudController;
 use App\Entity\Fournisseur;
+use App\Entity\Stock;
+use App\Entity\Taille;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -64,7 +66,20 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir categories','fas fa-eye',Fournisseur::class),
         ]);
         
+        yield MenuItem::subMenu('Taille','fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Ajouter taille','fas fa-plus',Taille::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir taille','fas fa-eye',Taille::class),
+        ]);
 
+        yield MenuItem::subMenu('User','fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Ajouter user','fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir user','fas fa-eye',User::class),
+        ]);
+
+        yield MenuItem::subMenu('stock','fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Ajouter stock','fas fa-plus',Stock::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir stock','fas fa-eye',Stock::class),
+        ]);
 
        /*  yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Produits', 'fas fa-list', Produit::class);
