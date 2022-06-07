@@ -17,16 +17,20 @@ use Doctrine\Persistence\ManagerRegistry;
 class ProduitRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
+    /* L'argument ManagerRegistry $registry indique à Symfony d' injecter le service Doctrine dans la méthode du contrôleur. */
     {
         parent::__construct($registry, Produit::class);
     }
 
     public function add(Produit $entity, bool $flush = false): void
     {
-        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->persist($entity); 
+
+        /* L'appel persist($entity) indique à Doctrine de "gérer" l'objet $entity. Cela n'entraîne pas l'envoi d'une requête à la base de données.*/
 
         if ($flush) {
             $this->getEntityManager()->flush();
+           /*  Lorsque la méthode flush() est appelée, Doctrine parcourt tous les objets qu'il gère pour voir s'ils doivent être conservés dans la base de données. Si l'objet n'existent pas dans la base de données, le gestionnaire d'entités exécute une requête INSERT, créant une nouvelle ligne dans la table produit. */
         }
     }
 

@@ -68,31 +68,31 @@
 						</ul>
 					</div>
 					{# <div class="d-flex col-3">
-																			
-																						{% if not is_granted("ROLE_USER") %}
-															
-																							<li class="nav-item">
-																								<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
-																							</li>
-																							<li class="nav-item">
-																								<a class="nav-link" href="{{ path('app_login') }}">Login</a>
-																							</li>
-																						{% else %}
-																							<li class="nav-item">
-																								<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-																							</li>
-																						{% endif %}
-																						
-																							<a href="#" class="fas fa-heart"></a>
-																					
-																					
-																							<a href="#" class="fas fa-user"></a>
-																						
-																					
-																							<a href="#" class="fa-solid fa-bag-shopping"></a>
-																						
-																					
-																				</div> #}
+																													
+																																{% if not is_granted("ROLE_USER") %}
+																									
+																																	<li class="nav-item">
+																																		<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+																																	</li>
+																																	<li class="nav-item">
+																																		<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+																																	</li>
+																																{% else %}
+																																	<li class="nav-item">
+																																		<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+																																	</li>
+																																{% endif %}
+																																
+																																	<a href="#" class="fas fa-heart"></a>
+																															
+																															
+																																	<a href="#" class="fas fa-user"></a>
+																																
+																															
+																																	<a href="#" class="fa-solid fa-bag-shopping"></a>
+																																
+																															
+																														</div> #}
 				</div>
 			</nav>
 			<nav class="navbar navbar-expand-lg">
@@ -167,6 +167,135 @@
 			</nav>
 		</header>
 		{% block body %}{% endblock %}
+
+		<hr class="separation">
+		<footer class="nb-footer">
+			<section
+				class="d-flex justify-content-center  p-4">
+				<!-- Left -->
+				<div class="me-5 d-none d-lg-block">
+					<span>Suivez-nous sur:</span>
+				</div>
+				<!-- Left -->
+
+				<!-- Right -->
+				<div>
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					{# <a href="" class="me-4 text-reset">
+						<i class="fab fa-twitter"></i>
+					</a> #}
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-youtube"></i>
+					</a>
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-instagram"></i>
+					</a>
+					{# <a href="" class="me-4 text-reset">
+						<i class="fab fa-linkedin"></i>
+					</a> #}
+				</div>
+				<!-- Right -->
+			</section>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+					
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<div class="footer-info-single">
+							<h2 class="title">Centre d'aide</h2>
+							<ul class="list-unstyled">
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Mode de paiement</a>
+								</li>
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										FAQ's</a>
+								</li>
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Infos de livraison</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<div class="footer-info-single">
+							<h2 class="title">Information Client</h2>
+							<ul class="list-unstyled">
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										A propos de nous</a>
+								</li>
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										FAQ's</a>
+								</li>
+
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Contactez-nous</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<div class="footer-info-single">
+							<h2 class="title">Securité et confidentialité</h2>
+							<ul class="list-unstyled">
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Conditions d'utilisation</a>
+								</li>
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Politique de confidentialité</a>
+								</li>
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Politique de retour / Remboursement</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<div class="footer-info-single">
+							<h2 class="title">Paiement</h2>
+							<p>Sample HTML page with Twitter's Bootstrap. Code example of Easy Sticky Footer using HTML, Javascript, jQuery, and CSS. This bootstrap tutorial covers all the major elements of responsive</p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<section class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6">
+							<p>Copyright © 2022. mascindyeSCreations.</p>
+						</div>
+						<div class="col-sm-6"></div>
+					</div>
+				</div>
+			</section>
+		</footer>
+
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
