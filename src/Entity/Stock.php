@@ -22,6 +22,10 @@ class Stock
     #[ORM\ManyToOne(targetEntity: Taille::class, inversedBy: 'stocks')]
     private $taille;
 
+    public function __toString()
+    {
+       return $this->quantite;
+    }
     public function getId(): ?int
     {
         return $this->id;

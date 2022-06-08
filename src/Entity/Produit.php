@@ -28,8 +28,8 @@ class Produit
    /*  #[ORM\Column(type: 'integer', nullable: true)]
     private $stock; */
 
-    #[ORM\Column(type: 'float')]
-    private $prix_TTC;
+    /* #[ORM\Column(type: 'float')]
+    private $prix_TTC; */
 
     #[ORM\Column(type: 'string', length: 255)]
     private $url_image;
@@ -59,14 +59,14 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Stock::class)]
     private $stocks;
 
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    private $prix;
+
     public function __construct()
     {
         $this->stocks = new ArrayCollection();
     }
 
-    
-
-  
 
     public function __toString()
     {
@@ -117,7 +117,7 @@ class Produit
         return $this;
     }
  */
-    public function getPrixTTC(): ?float
+   /*  public function getPrixTTC(): ?float
     {
         return $this->prix_TTC;
     }
@@ -127,7 +127,7 @@ class Produit
         $this->prix_TTC = $prix_TTC;
 
         return $this;
-    }
+    } */
 
     public function getUrlImage(): ?string
     {
@@ -239,6 +239,22 @@ class Produit
                 $stock->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?string
+    {
+        return $this->prix;
+       
+    }
+
+    public function setPrix(string $prix): self
+    {
+        $this->prix = number_format(intval($prix), 2);
+        /* dd(intval($prix)); */
+        /* $this->prix = $prix;
+        dd($prix); */
 
         return $this;
     }

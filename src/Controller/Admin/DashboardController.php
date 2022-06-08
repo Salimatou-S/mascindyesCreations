@@ -28,6 +28,7 @@ class DashboardController extends AbstractDashboardController
         //
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(ProduitCrudController::class)->generateUrl());
+        
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -50,6 +51,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::section('E-commerce');
+        /* yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage'); */
 
         yield MenuItem::subMenu('Produits','fas fa-list')->setSubItems([
             MenuItem::linkToCrud('Ajouter produit','fas fa-plus',Produit::class)->setAction(Crud::PAGE_NEW),
@@ -62,8 +64,8 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::subMenu('Fournisseurs','fas fa-list')->setSubItems([
-            MenuItem::linkToCrud('Ajouter Categorie','fas fa-plus',Fournisseur::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir categories','fas fa-eye',Fournisseur::class),
+            MenuItem::linkToCrud('Ajouter Fournisseur','fas fa-plus',Fournisseur::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir Fournisseurs','fas fa-eye',Fournisseur::class),
         ]);
         
         yield MenuItem::subMenu('Taille','fas fa-list')->setSubItems([
@@ -71,14 +73,16 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir taille','fas fa-eye',Taille::class),
         ]);
 
-        yield MenuItem::subMenu('User','fas fa-list')->setSubItems([
+        yield MenuItem::subMenu('User','fas fa-list')
+        ->setPermission('ROLE_ADMIN')
+        ->setSubItems ([
             MenuItem::linkToCrud('Ajouter user','fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir user','fas fa-eye',User::class),
+            MenuItem::linkToCrud('Voir user','fas fa-eye',User::class),            
         ]);
 
         yield MenuItem::subMenu('stock','fas fa-list')->setSubItems([
             MenuItem::linkToCrud('Ajouter stock','fas fa-plus',Stock::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir stock','fas fa-eye',Stock::class),
+            MenuItem::linkToCrud('Voir stocks','fas fa-eye',Stock::class),
         ]);
 
        /*  yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');

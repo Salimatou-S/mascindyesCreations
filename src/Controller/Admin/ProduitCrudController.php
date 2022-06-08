@@ -28,11 +28,6 @@ class ProduitCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            /* IdField::new('id'),
-            TextField::new('nom'),
-            TextEditorField::new('description'), */
-            
-
             IdField::new('id')->hideOnForm(),
             DateTimeField::new('created_at')->hideWhenCreating(),
             TextField::new('nom'),
@@ -46,7 +41,7 @@ class ProduitCrudController extends AbstractCrudController
                /*  ->setBasePath('mascindye/images') */
                 /* ->setUploadDir('public/mascindye/images') */ ,
             TextField::new('description')->onlyOnForms(),
-            MoneyField::new('prix_TTC')->setCurrency('EUR'),
+            MoneyField::new('prix')->setCurrency('EUR'),
             BooleanField::new('active'),
         
         ];

@@ -15,14 +15,15 @@
 				<div class="row">
 				 {% for produit in produits %}
 
-				{#  {{produit.nom}} #}
 					<div class="col-lg-4">
-					{# 	<a href="">
-							<img src="{{produit.url_image}}" width="250" height="300" class="img-fluid" alt="..."></a>  #}
+						<a href="">
+							<img src="{{asset('mascindye/images/' ~ produit.urlImage)}}">
+						</a> 
 						<h2>{{produit.nom}}</h2>
-						<p>Collection femme - chic et décontractée</p>
-						{# <span>{{produit.prix}}</span> #}
+						<p>Collection chic et décontractée</p>
+						<span>{{produit.prix}}</span>
 					</div>
+
 					{% endfor %}
 				</div>
 
