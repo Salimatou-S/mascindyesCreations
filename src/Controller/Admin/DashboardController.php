@@ -51,7 +51,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::section('E-commerce');
-        /* yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage'); */
+        yield MenuItem::linktoRoute('Retour au site', 'fas fa-home', 'home'); 
 
         yield MenuItem::subMenu('Produits','fas fa-list')->setSubItems([
             MenuItem::linkToCrud('Ajouter produit','fas fa-plus',Produit::class)->setAction(Crud::PAGE_NEW),

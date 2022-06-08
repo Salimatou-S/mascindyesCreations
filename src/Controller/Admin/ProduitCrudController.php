@@ -7,12 +7,13 @@ use Symfony\Component\Notifier\Texter;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 
 class ProduitCrudController extends AbstractCrudController
 {
@@ -41,7 +42,7 @@ class ProduitCrudController extends AbstractCrudController
                /*  ->setBasePath('mascindye/images') */
                 /* ->setUploadDir('public/mascindye/images') */ ,
             TextField::new('description')->onlyOnForms(),
-            MoneyField::new('prix')->setCurrency('EUR'),
+            NumberField::new('prix')->setNumDecimals(2),
             BooleanField::new('active'),
         
         ];

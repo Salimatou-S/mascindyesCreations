@@ -24,13 +24,6 @@ class Produit
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $description;
 
-   
-   /*  #[ORM\Column(type: 'integer', nullable: true)]
-    private $stock; */
-
-    /* #[ORM\Column(type: 'float')]
-    private $prix_TTC; */
-
     #[ORM\Column(type: 'string', length: 255)]
     private $url_image;
 
@@ -59,8 +52,11 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Stock::class)]
     private $stocks;
 
-    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    #[ORM\Column(type: 'float')]
     private $prix;
+
+   /*  #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    private $prix; */
 
     public function __construct()
     {
@@ -243,21 +239,33 @@ class Produit
         return $this;
     }
 
-    public function getPrix(): ?string
+   /*  public function getPrix(): ?string
     {
         return $this->prix;
        
-    }
+    } */
 
-    public function setPrix(string $prix): self
-    {
-        $this->prix = number_format(intval($prix), 2);
+   /*  public function setPrix(string $prix): self
+    { */
+        /* $this->prix = number_format(intval($prix), 2); */
         /* dd(intval($prix)); */
-        /* $this->prix = $prix;
-        dd($prix); */
+        /*  $this->prix = $prix; */
+       /* dd($prix); */
 
-        return $this;
-    }
+       /*  return $this;
+    } */
+
+       public function getPrix(): ?float
+       {
+           return $this->prix;
+       }
+
+       public function setPrix(float $prix): self
+       {
+           $this->prix = $prix;
+
+           return $this;
+       }
 
     
 
