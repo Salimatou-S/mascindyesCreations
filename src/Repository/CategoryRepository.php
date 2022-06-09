@@ -39,7 +39,23 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
-    
+    public function findProduitsByParentCategory($cat): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Produit p
+            WHERE p.category IN 
+                (SELECT c 
+                FROM App\Entity\Category c
+                WHERE c.parent = :val)'
+        )
+        ->setParameter('val', $cat)
+        // ->setMaxResults($nb)
+        ;
+        return $query->getResult();
+    }
 
 //    /**
 //     * @return Category[] Returns an array of Category objects

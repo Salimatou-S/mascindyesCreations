@@ -43,40 +43,51 @@ class ProduitRepository extends ServiceEntityRepository
         }
     }
 
-    public function collectionFemme(){
+   
 
-        return $this->createQueryBuilder('a')
-        ->andWhere('a.category = 1')
-        ->orderBy('a.createdAt','DESC')
+   /*  public function collectionFemme(){
+
+        return $this->createQueryBuilder('p')
+        ->andWhere('p.category = 5 ')
+        ->orWhere('p.category = 4')
+        ->orderBy('p.createdAt','DESC')
         ->getQuery()
         ->getResult();
     }
-    
-    public function femmeWax(){
+     */
+   /*  public function femmeWax(){
+
+        return $this->createQueryBuilder('p')
+        ->andWhere('p.category = 5')
+        ->orderBy('p.createdAt','DESC')
+        ->getQuery()
+        ->getResult();
+    } */
+    /* public function femmeBazin(){
 
         return $this->createQueryBuilder('a')
-        ->andWhere('a.category = 3')
-        ->orderBy('a.created_at','DESC')
+        ->andWhere('p.category = 4')
+        ->orderBy('p.createdAt','DESC')
+        ->getQuery()
+        ->getResult();
+    } */
+
+   /*  public function collectionFille(){
+
+        return $this->createQueryBuilder('a')
+        ->andWhere('p.category = 2')
+        ->orderBy('p.createdAt','DESC')
         ->getQuery()
         ->getResult();
     }
-    public function femmeBazin(){
-
-        return $this->createQueryBuilder('a')
-        ->andWhere('a.category = 4')
-        ->orderBy('a.created_at','DESC')
-        ->getQuery()
-        ->getResult();
-    }
-
     public function filleBazin(){
 
         return $this->createQueryBuilder('a')
-        ->andWhere('a.category = 8')
-        ->orderBy('a.created_at','DESC')
+        ->andWhere('p.category = 8')
+        ->orderBy('p.createdAt','DESC')
         ->getQuery()
         ->getResult();
-    }
+    } */
 
 //    /**
 //     * @return Produit[] Returns an array of Produit objects

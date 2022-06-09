@@ -55,12 +55,16 @@ class Produit
     #[ORM\Column(type: 'float')]
     private $prix;
 
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Rapport::class)]
+    private $rapports;
+
    /*  #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
     private $prix; */
 
     public function __construct()
     {
         $this->stocks = new ArrayCollection();
+        $this->rapports = new ArrayCollection();
     }
 
 
@@ -239,21 +243,6 @@ class Produit
         return $this;
     }
 
-   /*  public function getPrix(): ?string
-    {
-        return $this->prix;
-       
-    } */
-
-   /*  public function setPrix(string $prix): self
-    { */
-        /* $this->prix = number_format(intval($prix), 2); */
-        /* dd(intval($prix)); */
-        /*  $this->prix = $prix; */
-       /* dd($prix); */
-
-       /*  return $this;
-    } */
 
        public function getPrix(): ?float
        {
@@ -267,7 +256,33 @@ class Produit
            return $this;
        }
 
-    
+       /**
+        * @return Collection<int, Rapport>
+        */
+       public function getRapports(): Collection
+       {
+           return $this->rapports;
+       }
 
-   
+       public function addRapport(Rapport $rapport): self
+       {
+           if (!$this->rapports->contains($rapport)) {
+               $this->rapports[] = $rapport;
+               $rapport->setProduit($this);
+           }
+
+           return $this;
+       }
+
+       public function removeRapport(Rapport $rapport): self
+       {
+           if ($this->rapports->removeElement($rapport)) {
+               // set the owning side to null (unless already changed)
+               if ($rapport->getProduit() === $this) {
+                   $rapport->setProduit(null);
+               }
+           }
+
+           return $this;
+       } 
 }

@@ -2,44 +2,57 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Repository\ProduitRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PageController extends AbstractController
 {
-    #[Route('/femme', name: 'page_femme')]
+    #[Route('/{slug}', name: 'category_parent')]
 
-    public function femme(ProduitRepository $produitRepository): Response
+    public function index4(Category $category, CategoryRepository $categoryRepository): Response
+    { /* dd($category); */
+        $produits = $categoryRepository->findProduitsByParentCategory($category);
+
+        foreach ($produits as $produit) {
+           /*  dump($produit); */
+            
+        }/*  dd(''); */
+        return $this->render('page/produits.html.twig', [
+                'produits' => $produits,
+                'category'=>$category->getName(),
+            ]);
+    }
+
+
+    #[Route('/category/{slug}', name: 'category_enfant')]
+    public function categoryEnfant(Category $category, CategoryRepository $categoryRepository): Response
     {
-        $produits =$produitRepository->collectionFemme();
-        return $this->render('page/femme.html.twig', [
+       /*  dd($category); */
+        return $this->render('page/produits.html.twig', [
+            'produits' => $category->getproduits(),
+            'category'=>$category->getName(),
+        ]);
+    }
+
+   /*  #[Route('/femmebazin', name: 'femme_bazin')]
+    public function femmebazin(ProduitRepository $produitRepository): Response
+    {
+        $produits =$produitRepository->femmeBazin();
+        return $this->render('page/femmebazin.html.twig', [
             'produits' => $produits,
         ]);
     }
 
-    #[Route('/femmewax', name: 'femme_wax')]
-    public function femmewax(): Response
-    {
-        return $this->render('page/femmewax.html.twig', [
-            'controller_name' => 'FemmewaxController',
-        ]);
-    }
-
-    #[Route('/femmebazin', name: 'femme_bazin')]
-    public function femmebazin(): Response
-    {
-        return $this->render('page/femmebazin.html.twig', [
-            'controller_name' => 'FemmebazinController',
-        ]);
-    }
-
     #[Route('/fille', name: 'page_fille')]
-    public function fille(): Response
+    public function fille(ProduitRepository $produitRepository): Response
     {
+        $produits = $produitRepository->collectionFille();
         return $this->render('page/fille.html.twig', [
-            'controller_name' => 'FilleController',
+            'produits' => $produits,
         ]);
     }
 
@@ -81,5 +94,5 @@ class PageController extends AbstractController
         return $this->render('page/accessoiresBJ.html.twig', [
             'controller_name' => 'AccessoiresBJController',
         ]);
-    }
+    } */
 }

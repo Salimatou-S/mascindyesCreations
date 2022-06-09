@@ -42,7 +42,8 @@ class ProduitCrudController extends AbstractCrudController
                /*  ->setBasePath('mascindye/images') */
                 /* ->setUploadDir('public/mascindye/images') */ ,
             TextField::new('description')->onlyOnForms(),
-            NumberField::new('prix')->setNumDecimals(2),
+            /* NumberField::new('prix')->setNumDecimals(2), */
+            MoneyField::new('prix')->setCurrency('EUR')->setStoredAsCents(false),
             BooleanField::new('active'),
         
         ];

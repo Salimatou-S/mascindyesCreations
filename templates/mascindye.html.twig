@@ -53,17 +53,17 @@
 								<li class="nav-item">
 									<a class="nav-link" href="{{ path('app_login') }}">Login</a>
 								</li>
-						{% else %}
-							{% if is_granted("ROLE_MODERATEUR") %}
-								<li class="nav-item">
-									<a class="nav-link" href="{{ path('admin') }}">Back-Office</a>
-								</li>
-							{% endif %}
+							{% else %}
+								{% if is_granted("ROLE_MODERATEUR") %}
+									<li class="nav-item">
+										<a class="nav-link" href="{{ path('admin') }}">Back-Office</a>
+									</li>
+								{% endif %}
 								<li class="nav-item">
 									<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
 								</li>
-							
-						{% endif %}
+
+							{% endif %}
 							<li class="nav-item p-2">
 								<a href="#" class="fas fa-heart"></a>
 							</li>
@@ -74,31 +74,31 @@
 						</ul>
 					</div>
 					{# <div class="d-flex col-3">
-																																							
-																																										{% if not is_granted("ROLE_USER") %}
-																																			
-																																											<li class="nav-item">
-																																												<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
-																																											</li>
-																																											<li class="nav-item">
-																																												<a class="nav-link" href="{{ path('app_login') }}">Login</a>
-																																											</li>
-																																										{% else %}
-																																											<li class="nav-item">
-																																												<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-																																											</li>
-																																										{% endif %}
-																																										
-																																											<a href="#" class="fas fa-heart"></a>
-																																									
-																																									
-																																											<a href="#" class="fas fa-user"></a>
-																																										
-																																									
-																																											<a href="#" class="fa-solid fa-bag-shopping"></a>
-																																										
-																																									
-																																								</div> #}
+																																																						
+																																																									{% if not is_granted("ROLE_USER") %}
+																																																		
+																																																										<li class="nav-item">
+																																																											<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+																																																										</li>
+																																																										<li class="nav-item">
+																																																											<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+																																																										</li>
+																																																									{% else %}
+																																																										<li class="nav-item">
+																																																											<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+																																																										</li>
+																																																									{% endif %}
+																																																									
+																																																										<a href="#" class="fas fa-heart"></a>
+																																																								
+																																																								
+																																																										<a href="#" class="fas fa-user"></a>
+																																																									
+																																																								
+																																																										<a href="#" class="fa-solid fa-bag-shopping"></a>
+																																																									
+																																																								
+																																																							</div> #}
 				</div>
 			</nav>
 			<nav class="navbar navbar-expand-lg">
@@ -112,51 +112,51 @@
 								<a class="nav-link active" aria-current="page" href="{{path('home')}}">Accueil</a>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="{{path('page_femme')}}" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<a class="nav-link dropdown-toggle" href="" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Collection femme
 								</a>
 								<ul class="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
 									<li>
-										<a class="dropdown-item" href="{{path('page_femme')}}">Toute la collection
+										<a class="dropdown-item" href="{{path('category_parent',{slug:'collection-femme'})}}">Toute la collection
 										</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="{{path('femme_wax')}}">
+										<a class="dropdown-item" href="{{path('category_enfant',{slug:'collection-femme-wax'})}}">
 											Femme Wax</a>
 									</li>
 									<li></li>
 									<li>
-										<a class="dropdown-item" href="{{path('femme_bazin')}}">Femme Bazin</a>
+										<a class="dropdown-item" href="{{path('category_enfant',{slug:'collection-femme-bazin'})}}">Femme Bazin</a>
 									</li>
 								</ul>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="{{path('page_fille')}}" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<a class="nav-link dropdown-toggle" href="" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Collection fille
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 									<li>
-										<a class="dropdown-item" href="{{path('page_femme')}}">Toute la collection
+										<a class="dropdown-item" href="{{path('category_parent',{slug:'collection-fille'})}}">Toute la collection
 										</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="{{path('fille_wax')}}">Fille Wax</a>
+										<a class="dropdown-item" href="{{path('category_enfant',{slug:'collection-fille-bazin'})}}">Fille Wax</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="{{path('fille_bazin')}}">Fille Bazin</a>
+										<a class="dropdown-item" href="{{path('category_enfant',{slug:'collection-fille-bazin'})}}">Fille Bazin</a>
 									</li>
 								</ul>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="{{path('page_accessoires')}}" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<a class="nav-link dropdown-toggle" href="" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Accessoires
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 									<li>
-										<a class="dropdown-item" href="{{path('accessoires_SC')}}">Sacs et chaussures</a>
+										<a class="dropdown-item" href="{{path('category_enfant',{slug:'sacs-et-chaussures'})}}">Sacs et chaussures</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="{{path('accessoires_BJ')}}">Bijoux</a>
+										<a class="dropdown-item" href="{{path('category_enfant',{slug:'bijoux'})}}">Bijoux</a>
 									</li>
 								</ul>
 							</li>
@@ -190,17 +190,17 @@
 						<i class="fab fa-facebook-f"></i>
 					</a>
 					{# <a href="" class="me-4 text-reset">
-																<i class="fab fa-twitter"></i>
-															</a> #}
-					<a href="" class="me-4 text-reset">
+																															<i class="fab fa-twitter"></i>
+																														</a> #}
+					<a href="https://youtu.be/Xa29UDKMSRo" class="me-4 text-reset">
 						<i class="fab fa-youtube"></i>
 					</a>
 					<a href="" class="me-4 text-reset">
 						<i class="fab fa-instagram"></i>
 					</a>
 					{# <a href="" class="me-4 text-reset">
-																<i class="fab fa-linkedin"></i>
-															</a> #}
+																															<i class="fab fa-linkedin"></i>
+																														</a> #}
 				</div>
 				<!-- Right -->
 			</section>
@@ -280,8 +280,34 @@
 
 					<div class="col-md-3 col-sm-6">
 						<div class="footer-info-single">
-							<h2 class="title">Paiement</h2>
-							<p></p>
+							<h2 class="title">Nos engagements</h2>
+							<ul class="list-unstyled">
+								<li>
+									<a href="" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Paiements sécurisés
+																		<svg width="45" height="20" viewbox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect width="74.6269" height="50" rx="5" fill="#FAFAFA"/>
+									<path d="M63.9776 15.1981H60.068C58.8861 15.1981 57.9769 15.5618 57.4314 16.7437L49.976 33.7457H55.2493C55.2493 33.7457 56.1585 31.4727 56.3403 30.9272C56.8858 30.9272 62.0683 30.9272 62.7956 30.9272C62.9775 31.5636 63.4321 33.6548 63.4321 33.6548H68.1599L63.9776 15.1981ZM57.795 27.1086C58.2496 26.0175 59.7953 21.9261 59.7953 21.9261C59.7953 22.0171 60.2499 20.8351 60.4317 20.1987L60.7954 21.8352C60.7954 21.8352 61.7955 26.2903 61.9773 27.1995H57.795V27.1086Z" fill="#3362AB"/>
+									<path d="M50.3398 27.6541C50.3398 31.4728 46.8849 34.0185 41.5206 34.0185C39.2476 34.0185 37.0655 33.5639 35.8836 33.0184L36.6109 28.8361L37.2474 29.1088C38.8839 29.8362 39.975 30.109 41.9752 30.109C43.4299 30.109 44.9755 29.5634 44.9755 28.2906C44.9755 27.4723 44.3391 26.9268 42.3389 26.0176C40.4296 25.1084 37.8838 23.6537 37.8838 21.017C37.8838 17.3802 41.4297 14.9254 46.4303 14.9254C48.3396 14.9254 49.9761 15.2891 50.9762 15.7436L50.2489 19.7441L49.8852 19.3804C48.976 19.0168 47.7941 18.6531 46.0666 18.6531C44.1573 18.744 43.2481 19.5623 43.2481 20.2896C43.2481 21.1079 44.3391 21.7443 46.0666 22.5626C48.976 23.9264 50.3398 25.4721 50.3398 27.6541Z" fill="#3362AB"/>
+									<path d="M5.97015 15.38L6.06107 15.0164H13.8802C14.9712 15.0164 15.7895 15.38 16.0622 16.562L17.7897 24.7448C16.0622 20.3806 12.0618 16.8348 5.97015 15.38Z" fill="#F9B50B"/>
+									<path d="M28.7913 15.1981L20.8813 33.6548H15.517L10.971 18.1985C14.2441 20.2896 16.9717 23.5627 17.9718 25.8357L18.5173 27.745L23.427 15.1072H28.7913V15.1981Z" fill="#3362AB"/>
+									<path d="M30.8823 15.1072H35.8829L32.7007 33.6548H27.7001L30.8823 15.1072Z" fill="#3362AB"/>
+								</svg>
+								<svg width="45" height="20" viewbox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect width="74.6269" height="50" rx="5" fill="#FAFAFA"/>
+									<ellipse cx="26.1194" cy="24.6269" rx="18.6567" ry="18.6567" fill="#EB001B"/>
+									<path d="M67.9105 24.6269C67.9105 34.9307 59.5576 43.2836 49.2538 43.2836C38.9499 43.2836 30.597 34.9307 30.597 24.6269C30.597 14.323 38.9499 5.97015 49.2538 5.97015C59.5576 5.97015 67.9105 14.323 67.9105 24.6269Z" fill="#FFA41E"/>
+									<path d="M37.6866 9.98781C33.368 13.4049 30.597 18.6923 30.597 24.6269C30.597 30.5615 33.368 35.8489 37.6866 39.2659C42.0052 35.8489 44.7762 30.5615 44.7762 24.6269C44.7762 18.6923 42.0052 13.4049 37.6866 9.98781Z" fill="#FF5F00"/>
+								</svg>
+									</a>
+								</li>
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Meilleurs prix garantis</a>
+								</li>
+							</ul>
 
 						</div>
 					</div>
@@ -292,7 +318,18 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-6">
-							<p>Copyright © 2022. mascindyeSCreations.</p>
+							<p>Copyright © 2022.
+								<svg width="30" height="23" viewbox="0 0 35 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<ellipse cx="16.3161" cy="11.8035" rx="16.3161" ry="11.8035" fill="#F7E020"/>
+									<path d="M21.6576 14.0838L15.5427 17.0104L16.4544 18.0073L17.385 19.0249L24.6781 27L27.2331 25.7771L25.144 23.4926L26.522 22.8331L30.793 24.0734L33.7499 22.6582L31.5676 21.8515L26.6146 19.5044L27.4083 17.3032L25.452 15.1641L21.6576 14.0838Z" fill="#080ED9" stroke="black"/>
+									<path d="M5.78296 13.0488V3.08801L10.7397 5.5782L14.7327 3.08801V13.0488H12.392V6.37506L10.7397 7.57035L8.26135 6.37506V13.0488H5.78296Z" fill="#080ED9" stroke="black"/>
+									<ellipse cx="20.2058" cy="10.2099" rx="5.47312" ry="3.63567" fill="#BF3B40"/>
+									<path d="M25.6789 10.2597C25.6789 11.635 24.1377 12.7499 22.2366 12.7499C20.3356 12.7499 18.7944 11.635 18.7944 10.2597C18.7944 8.88443 20.3356 7.76953 22.2366 7.76953C24.1377 7.76953 25.6789 8.88443 25.6789 10.2597Z" fill="#F9BA71"/>
+									<path d="M25.7478 9.26367V13.248L26.8493 14.0448L28.9146 15.0409H31.8061" stroke="#BF3B40" stroke-width="10"/>
+									<rect x="20.2402" y="16.8337" width="3.44221" height="2.49019" fill="#F9BA71"/>
+								</svg>
+
+								Mascindye'S Creations</p>
 						</div>
 						<div class="col-sm-6"></div>
 					</div>

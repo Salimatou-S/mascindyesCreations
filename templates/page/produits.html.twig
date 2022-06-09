@@ -1,0 +1,35 @@
+{% extends 'mascindye.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
+
+{% block title %}Hello PageController!
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="about">
+			<div class="titre">
+				<h1>{{category}}</h1>
+			</div>
+			<div class="trait"></div>
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 m-4">
+				{% for produit in produits %}
+					<div class="col justify-content-center g-4 p-4">
+						<div class="card shadow p-3 mb-5 bg-body rounded p-4">
+							<a href="">
+								<img src="{{asset('mascindye/images/' ~ produit.urlImage)}}" class="card-img-top" alt="...">
+							</a>
+							<div class="card-body ">
+								<h5 class="card-title bg-dark text-warning">{{produit.nom}}</h5>
+								<p class="card-text p-0">{{produit.category}}
+								</p>
+								<p class="card-text p-0">{{produit.description}}</p>
+								<p class="card-text p-0">{{produit.prix}}€
+								</p>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</main>
+{% endblock %}
