@@ -8,14 +8,14 @@
 	<main>
 		<div class="about">
 			<div class="titre">
-				<h1>{{category}}</h1>
+				<h1>{{produit.nom}}</h1>
 			</div>
 			<div class="trait"></div>
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 m-4 ">
-				{% for produit in produits %}
+			<div class="row row-cols-1 row-cols-sm-2  mx-auto">
+				{# {% for produit in produits %} #}
 					<div class="col justify-content-center g-4 p-4">
 						<div class="card shadow p-3 mb-5 bg-body rounded p-4">
-							<a href="{{ path('detail_produit', {slug: produit.slug}) }}">
+							<a href="">
 								<img src="{{asset('mascindye/images/' ~ produit.urlImage)}}" class="card-img-top" alt="...">
 							</a>
 							<div class="card-body ">
@@ -28,7 +28,7 @@
 							</div>
 						</div>
 					</div>
-				{% endfor %}
+			{# 	{% endfor %} #}
 			</div>
 		</div>
 	</main>

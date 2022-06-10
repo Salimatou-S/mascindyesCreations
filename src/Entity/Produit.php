@@ -58,8 +58,11 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Rapport::class)]
     private $rapports;
 
-   /*  #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
-    private $prix; */
+    
+    #[ORM\Column(type: 'string', length: 50)]
+    private $slug;
+
+  
 
     public function __construct()
     {
@@ -103,31 +106,6 @@ class Produit
 
         return $this;
     }
-
-
-    /* public function getStock(): ?int
-    {
-        return $this->stock;
-    }
-
-    public function setStock(?int $stock): self
-    {
-        $this->stock = $stock;
-
-        return $this;
-    }
- */
-   /*  public function getPrixTTC(): ?float
-    {
-        return $this->prix_TTC;
-    }
-
-    public function setPrixTTC(float $prix_TTC): self
-    {
-        $this->prix_TTC = $prix_TTC;
-
-        return $this;
-    } */
 
     public function getUrlImage(): ?string
     {
@@ -282,6 +260,18 @@ class Produit
                    $rapport->setProduit(null);
                }
            }
+
+           return $this;
+       }
+
+       public function getSlug(): ?string
+       {
+           return $this->slug;
+       }
+
+       public function setSlug(string $slug): self
+       {
+           $this->slug = $slug;
 
            return $this;
        } 

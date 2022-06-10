@@ -217,8 +217,10 @@ img {
 /* Style CARD FEMME*/
 
 .col img:hover {
-  transform: scale(1.1);
-  translate: 0.6 ease;
+  transform: scale(1.2,1.2) /* rotate(2deg) */;
+  transition: all 0.3s;
+  /* transform: scale(1.1);
+  translate: 0.6 ease; */
 }
 
 
