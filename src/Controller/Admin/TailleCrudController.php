@@ -21,7 +21,6 @@ class TailleCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('taille'),
-            AssociationField::new('stocks'),
             
         ];
     }

@@ -16,7 +16,7 @@
 					<div class="col justify-content-center g-4 p-4">
 						<div class="card shadow p-1 mb-5 bg-body rounded p-0 ">
 							<a href="{{ path('detail_produit', {slug: produit.slug}) }}">
-								<img src="{{asset('mascindye/images/' ~ produit.urlImage)}}" class="card-img-top" alt="...">
+								<img src="{{app_cdn}}{{produit.urlImage}}" class="card-img-top" alt="...">
 							</a>
 							<div class="card-body ">
 								<h5 class="card-title bg-dark text-warning">{{produit.nom}}</h5>

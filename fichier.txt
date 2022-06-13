@@ -1,19 +1,16 @@
  ----------------------------- -------- -------- ------ ----------------------------------- 
   Name                          Method   Scheme   Host   Path                               
  ----------------------------- -------- -------- ------ ----------------------------------- 
-  admin                         ANY      ANY      ANY    /admin                             
-  page_femme                    ANY      ANY      ANY    /femme                             
-  femme_wax                     ANY      ANY      ANY    /femmewax                          
-  femme_bazin                   ANY      ANY      ANY    /femmebazin                        
-  page_fille                    ANY      ANY      ANY    /fille                             
-  fille_bazin                   ANY      ANY      ANY    /fillebazin                        
-  fille_wax                     ANY      ANY      ANY    /fillewax                          
-  page_accessoires              ANY      ANY      ANY    /accessoires                       
-  accessoires_SC                ANY      ANY      ANY    /accessoiresSC                     
-  accessoires_BJ                ANY      ANY      ANY    /accessoiresBJ                     
-  app_register                  ANY      ANY      ANY    /register                          
-  app_verify_email              ANY      ANY      ANY    /verify/email                      
-  app_register2                 ANY      ANY      ANY    /register2                         
+  admin                         ANY      ANY      ANY    Back-office easyadmin  ('/admin')                           
+  category_parent               ANY      ANY      ANY    Affichage de tous les articles d'une catégorie parent ('/category/{slug}')                  
+  category_enfant               ANY      ANY      ANY    Affichage de tous les articles d'une catégorie enfant ('/subcategory/category/{slug}')      
+  detail_produit                ANY      ANY      ANY    Affichage d'un article ('/detail/{slug}')                    
+  app_register                  ANY      ANY      ANY    Inscription d'un User ('/register')                                    
+  app_register2                 ANY      ANY      ANY    Recuperation des infos complementaires sur un User (' /register2') 
+
+
+
+  app_verify_email              ANY      ANY      ANY    /verify/email  
   app_forgot_password_request   ANY      ANY      ANY    /reset-password                    
   app_check_email               ANY      ANY      ANY    /reset-password/check-email        
   app_reset_password            ANY      ANY      ANY    /reset-password/reset/{token}      
