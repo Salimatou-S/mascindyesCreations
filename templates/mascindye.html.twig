@@ -51,7 +51,7 @@
 									<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+									<a class="nav-link" href="{{ path('app_login') }}">connexion</a>
 								</li>
 							{% else %}
 								{% if is_granted("ROLE_MODERATEUR") %}
@@ -60,7 +60,7 @@
 									</li>
 								{% endif %}
 								<li class="nav-item">
-									<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+									<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
 								</li>
 
 							{% endif %}
@@ -74,31 +74,31 @@
 						</ul>
 					</div>
 					{# <div class="d-flex col-3">
-																																																						
-																																																									{% if not is_granted("ROLE_USER") %}
-																																																		
-																																																										<li class="nav-item">
-																																																											<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
-																																																										</li>
-																																																										<li class="nav-item">
-																																																											<a class="nav-link" href="{{ path('app_login') }}">Login</a>
-																																																										</li>
-																																																									{% else %}
-																																																										<li class="nav-item">
-																																																											<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-																																																										</li>
-																																																									{% endif %}
-																																																									
-																																																										<a href="#" class="fas fa-heart"></a>
-																																																								
-																																																								
-																																																										<a href="#" class="fas fa-user"></a>
-																																																									
-																																																								
-																																																										<a href="#" class="fa-solid fa-bag-shopping"></a>
-																																																									
-																																																								
-																																																							</div> #}
+																																																											
+																																																														{% if not is_granted("ROLE_USER") %}
+																																																							
+																																																															<li class="nav-item">
+																																																																<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+																																																															</li>
+																																																															<li class="nav-item">
+																																																																<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+																																																															</li>
+																																																														{% else %}
+																																																															<li class="nav-item">
+																																																																<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+																																																															</li>
+																																																														{% endif %}
+																																																														
+																																																															<a href="#" class="fas fa-heart"></a>
+																																																													
+																																																													
+																																																															<a href="#" class="fas fa-user"></a>
+																																																														
+																																																													
+																																																															<a href="#" class="fa-solid fa-bag-shopping"></a>
+																																																														
+																																																													
+																																																												</div> #}
 				</div>
 			</nav>
 			<nav class="navbar navbar-expand-lg">
@@ -165,8 +165,8 @@
 							</li>
 						</ul>
 						<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-secondary" type="submit">Search</button>
+							<input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
+							<button class="btn btn-outline-secondary" type="submit">Rechercher</button>
 						</form>
 					</div>
 				</div>
@@ -189,25 +189,18 @@
 					<a href="" class="me-4 text-reset">
 						<i class="fab fa-facebook-f"></i>
 					</a>
-					{# <a href="" class="me-4 text-reset">
-																															<i class="fab fa-twitter"></i>
-																														</a> #}
 					<a href="https://youtu.be/Xa29UDKMSRo" class="me-4 text-reset">
 						<i class="fab fa-youtube"></i>
 					</a>
 					<a href="" class="me-4 text-reset">
 						<i class="fab fa-instagram"></i>
 					</a>
-					{# <a href="" class="me-4 text-reset">
-																															<i class="fab fa-linkedin"></i>
-																														</a> #}
 				</div>
 				<!-- Right -->
 			</section>
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12"></div>
-
 					<div class="col-md-3 col-sm-6">
 						<div class="footer-info-single">
 							<h2 class="title">Centre d'aide</h2>
@@ -215,22 +208,24 @@
 								<li>
 									<a href="http://www.nextbootstrap.com/" title="">
 										<i class="fa fa-angle-double-right"></i>
-										Mode de paiement</a>
+										Mode de paiement
+									</a>
 								</li>
 								<li>
 									<a href="http://www.nextbootstrap.com/" title="">
 										<i class="fa fa-angle-double-right"></i>
-										FAQ's</a>
+										FAQ's
+									</a>
 								</li>
 								<li>
 									<a href="http://www.nextbootstrap.com/" title="">
 										<i class="fa fa-angle-double-right"></i>
-										Infos de livraison</a>
+										Infos de livraison
+									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
-
 					<div class="col-md-3 col-sm-6">
 						<div class="footer-info-single">
 							<h2 class="title">Information Client</h2>
@@ -238,23 +233,25 @@
 								<li>
 									<a href="http://www.nextbootstrap.com/" title="">
 										<i class="fa fa-angle-double-right"></i>
-										A propos de nous</a>
+										A propos de nous
+									</a>
 								</li>
 								<li>
 									<a href="http://www.nextbootstrap.com/" title="">
 										<i class="fa fa-angle-double-right"></i>
-										FAQ's</a>
+										FAQ's
+									</a>
 								</li>
 
 								<li>
 									<a href="http://www.nextbootstrap.com/" title="">
 										<i class="fa fa-angle-double-right"></i>
-										Contactez-nous</a>
+										Contactez-nous
+									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
-
 					<div class="col-md-3 col-sm-6">
 						<div class="footer-info-single">
 							<h2 class="title">Securité et confidentialité</h2>
@@ -262,58 +259,48 @@
 								<li>
 									<a href="http://www.nextbootstrap.com/" title="">
 										<i class="fa fa-angle-double-right"></i>
-										Conditions d'utilisation</a>
-								</li>
-								<li>
-									<a href="http://www.nextbootstrap.com/" title="">
-										<i class="fa fa-angle-double-right"></i>
-										Politique de confidentialité</a>
-								</li>
-								<li>
-									<a href="http://www.nextbootstrap.com/" title="">
-										<i class="fa fa-angle-double-right"></i>
-										Politique de retour / Remboursement</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="col-md-3 col-sm-6">
-						<div class="footer-info-single">
-							<h2 class="title">Nos engagements</h2>
-							<ul class="list-unstyled">
-								<li>
-									<a href="" title="">
-										<i class="fa fa-angle-double-right"></i>
-										Paiements sécurisés
-																		<svg width="45" height="20" viewbox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect width="74.6269" height="50" rx="5" fill="#FAFAFA"/>
-									<path d="M63.9776 15.1981H60.068C58.8861 15.1981 57.9769 15.5618 57.4314 16.7437L49.976 33.7457H55.2493C55.2493 33.7457 56.1585 31.4727 56.3403 30.9272C56.8858 30.9272 62.0683 30.9272 62.7956 30.9272C62.9775 31.5636 63.4321 33.6548 63.4321 33.6548H68.1599L63.9776 15.1981ZM57.795 27.1086C58.2496 26.0175 59.7953 21.9261 59.7953 21.9261C59.7953 22.0171 60.2499 20.8351 60.4317 20.1987L60.7954 21.8352C60.7954 21.8352 61.7955 26.2903 61.9773 27.1995H57.795V27.1086Z" fill="#3362AB"/>
-									<path d="M50.3398 27.6541C50.3398 31.4728 46.8849 34.0185 41.5206 34.0185C39.2476 34.0185 37.0655 33.5639 35.8836 33.0184L36.6109 28.8361L37.2474 29.1088C38.8839 29.8362 39.975 30.109 41.9752 30.109C43.4299 30.109 44.9755 29.5634 44.9755 28.2906C44.9755 27.4723 44.3391 26.9268 42.3389 26.0176C40.4296 25.1084 37.8838 23.6537 37.8838 21.017C37.8838 17.3802 41.4297 14.9254 46.4303 14.9254C48.3396 14.9254 49.9761 15.2891 50.9762 15.7436L50.2489 19.7441L49.8852 19.3804C48.976 19.0168 47.7941 18.6531 46.0666 18.6531C44.1573 18.744 43.2481 19.5623 43.2481 20.2896C43.2481 21.1079 44.3391 21.7443 46.0666 22.5626C48.976 23.9264 50.3398 25.4721 50.3398 27.6541Z" fill="#3362AB"/>
-									<path d="M5.97015 15.38L6.06107 15.0164H13.8802C14.9712 15.0164 15.7895 15.38 16.0622 16.562L17.7897 24.7448C16.0622 20.3806 12.0618 16.8348 5.97015 15.38Z" fill="#F9B50B"/>
-									<path d="M28.7913 15.1981L20.8813 33.6548H15.517L10.971 18.1985C14.2441 20.2896 16.9717 23.5627 17.9718 25.8357L18.5173 27.745L23.427 15.1072H28.7913V15.1981Z" fill="#3362AB"/>
-									<path d="M30.8823 15.1072H35.8829L32.7007 33.6548H27.7001L30.8823 15.1072Z" fill="#3362AB"/>
-								</svg>
-								<svg width="45" height="20" viewbox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect width="74.6269" height="50" rx="5" fill="#FAFAFA"/>
-									<ellipse cx="26.1194" cy="24.6269" rx="18.6567" ry="18.6567" fill="#EB001B"/>
-									<path d="M67.9105 24.6269C67.9105 34.9307 59.5576 43.2836 49.2538 43.2836C38.9499 43.2836 30.597 34.9307 30.597 24.6269C30.597 14.323 38.9499 5.97015 49.2538 5.97015C59.5576 5.97015 67.9105 14.323 67.9105 24.6269Z" fill="#FFA41E"/>
-									<path d="M37.6866 9.98781C33.368 13.4049 30.597 18.6923 30.597 24.6269C30.597 30.5615 33.368 35.8489 37.6866 39.2659C42.0052 35.8489 44.7762 30.5615 44.7762 24.6269C44.7762 18.6923 42.0052 13.4049 37.6866 9.98781Z" fill="#FF5F00"/>
-								</svg>
+										Conditions d'utilisation
 									</a>
 								</li>
 								<li>
 									<a href="http://www.nextbootstrap.com/" title="">
 										<i class="fa fa-angle-double-right"></i>
-										Meilleurs prix garantis</a>
+										Politique de confidentialité
+									</a>
+								</li>
+								<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Politique de retour / Remboursement
+									</a>
 								</li>
 							</ul>
-
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="footer-info-single">
+							<h2 class="title">Nos engagements</h2>
+							<ul class="list-unstyled">
+							<li>
+									<a href="http://www.nextbootstrap.com/" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Meilleurs prix garantis
+									</a>
+								</li>
+								<li>
+									<a href="" title="">
+										<i class="fa fa-angle-double-right"></i>
+										Paiements sécurisés
+									</a>
+									<img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg" alt="Visa"/>
+									<img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg" alt="American Express"/>
+									<img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg" alt="Mastercard"/>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			<section class="copyright">
 				<div class="container">
 					<div class="row">
@@ -336,9 +323,6 @@
 				</div>
 			</section>
 		</footer>
-
-
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 	</body>
 </html>

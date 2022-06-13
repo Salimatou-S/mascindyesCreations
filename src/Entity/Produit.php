@@ -58,7 +58,9 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Rapport::class)]
     private $rapports;
 
-    
+     /**
+     * @gedmo\Slug(fields={"nom"})
+     */
     #[ORM\Column(type: 'string', length: 50)]
     private $slug;
 

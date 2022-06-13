@@ -18,10 +18,10 @@ class PageController extends AbstractController
     { /* dd($category); */
         $produits = $categoryRepository->findProduitsByParentCategory($category);
 
-        foreach ($produits as $produit) {
-           /*  dump($produit); */
+       /*  foreach ($produits as $produits) { */
+           /*  dump($produit); 
             
-        }/*  dd(''); */
+        }*//*  dd(''); */
         return $this->render('page/produits.html.twig', [
                 'produits' => $produits,
                 'category'=>$category->getName(),
