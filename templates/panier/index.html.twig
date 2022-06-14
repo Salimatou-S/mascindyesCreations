@@ -1,0 +1,122 @@
+{% extends 'mascindye.html.twig' %}
+
+{% block title %}Hello PanierController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row text-uppercase text-center m-4">
+			<h4>panier</h4>
+		</div>
+		<div class="row ">
+			<div class="col-sm-12 col-md-10 col-md-offset-1 m-auto">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Produit</th>
+							<th>Taille</th>
+							<th>Quantité</th>
+							<th class="text-center">Prix</th>
+							<th class="text-center">Total</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for element in dataPanier %}
+							<tr>
+								<td class="col-sm-8 col-md-6">
+									<div class="media">
+										<a class="thumbnail pull-left" href="#">
+											<img class="media-object rounded " src="{{app_cdn}}{{element.produit.urlImage}} " style="width: 72px; height: 72px;">
+										</a>
+										<div class="media-body">
+											<h4 class="media-heading">
+												<a href="#">{{element.produit.nom}}</a>
+											</h4>
+											<span>Status:
+											</span>
+											<span class="text-success">
+												<strong>En stock</strong>
+											</span>
+										</div>
+									</div>
+								</td>
+								<td
+									class="col-sm-1 col-md-1 text-center">{# <strong>{{element.produit.taille}} </strong> #}
+								</td>
+								<td class="col-sm-1 col-md-1" style="text-align: center">
+									<input type="email" class="form-control" id="exampleInputEmail1" value="{{element.quantite}} ">
+								</td>
+								<td class="col-sm-1 col-md-1 text-center">
+									<strong>{{element.produit.prix}}
+										€</strong>
+								</td>
+								<td class="col-sm-1 col-md-1 text-center">
+									<strong>{{element.produit.prix * element.quantite}}
+										€</strong>
+								</td>
+								<td class="col-sm-1 col-md-1">
+									<button type="button" class="btn btn-danger">
+										<span class="glyphicon glyphicon-remove"></span>
+										Supprimer
+									</button>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5" class="text-center">Votre panier est vide !</td>
+							</tr>
+						{% endfor %}
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td colspan="2">
+								<h5>Frais de port:</h5>
+							</td>
+							<td colspan="3" class="text-right">
+								<h5>
+									<strong>taxe</strong>
+								</h5>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td colspan="2">
+								<h5>Total:
+								</h5>
+							</td>
+							<td class="text-right">
+								<h5>
+									<strong>{{total}}
+										€</strong>
+								</h5>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="{{path('category_parent',{slug:'collection-femme'})}}" type="button" class="btn btn-secondary">
+									{# <button type="button" class="btn btn-secondary"> #}
+									Continuer votre shopping
+									{# </button> #}
+								</a>
+							</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+
+								<button type="button" class="btn btn-success ">
+									commander
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	{{dump()}}
+{% endblock %}

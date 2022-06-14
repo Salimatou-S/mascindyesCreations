@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
+use App\Entity\Taille;
 use App\Entity\Produit;
+use App\Entity\Category;
 use App\Repository\ProduitRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\TailleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,10 +44,18 @@ class PageController extends AbstractController
     #[Route('/detail/{slug}', name: 'detail_produit')]
     public function detailProduit(Produit $produit): Response
     { 
+       /*  $produit = $tailleRepository->findTailles($tailles); */
         return $this->render('page/detailproduit.html.twig', [
             'produit' => $produit,
+            /* 'tailles'=>$tailles->getTaille(), */
           
          ]);
+    } 
+
+    #[Route('/construction', name: 'page_construction')]
+    public function pageConstruction(): Response
+    { 
+        return $this->render('page/pageEnConstruction.html.twig');
     } 
   
 }

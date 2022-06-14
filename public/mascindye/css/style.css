@@ -77,6 +77,8 @@ ul .dropdown-menu {
   border: 1px solid;
 }
 
+
+
 .navbar-light {
   background-color: rgba(0, 0, 0, 0.897)
     /* rgb(45, 44, 44) */
@@ -187,10 +189,10 @@ button .btn {
 
 }
 
-img {
+/* img {
 
   border-radius: 10px;
-}
+} */
 
 .col-lg-2 h2 {
 
