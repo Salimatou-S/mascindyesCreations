@@ -37,10 +37,9 @@ class PanierController extends AbstractController
     #[Route('/add/{id}', name: 'add')]
     public function add(Produit $produit, SessionInterface $session): Response
     {
-        $id=$produit->getId();
-        
         //Recuperer le panier en cours
         $panier=$session->get('panier',[]);
+        $id=$produit->getId();
 
         if (!empty($panier[$id])){
             $panier[$id]++;
@@ -53,5 +52,53 @@ class PanierController extends AbstractController
         /* dd($session); */
         return $this->redirectToRoute("panier_index");
 
+    }
+
+    #[Route('/remove/{id}', name: 'remove')]
+    public function remove(Produit $produit, SessionInterface $session): Response
+    {
+        //Recuperer le panier en cours
+        $panier=$session->get('panier',[]);
+        $id=$produit->getId();
+
+        if (!empty($panier[$id])){
+            if($panier[$id]>1){
+                $panier[$id]--;
+            }else{
+                unset($panier[$id]);
+            }
+        }
+
+        //On sauvegarde dans la session PHPSESSID
+        $session->set("panier",$panier);
+        /* dd($session); */
+        return $this->redirectToRoute("panier_index");
+    }
+
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete(Produit $produit, SessionInterface $session): Response
+    {
+        //Recuperer le panier en cours
+        $panier=$session->get('panier',[]);
+        $id=$produit->getId();
+
+        if (!empty($panier[$id])){
+            unset($panier[$id]);//retirer la ligne
+        }
+
+        //On sauvegarde dans la session PHPSESSID
+        $session->set("panier",$panier);
+        /* dd($session); */
+        return $this->redirectToRoute("panier_index");
+    }
+
+    #[Route('/delete', name: 'delete_all')]
+    public function deleteAll(SessionInterface $session): Response
+    {
+        $session->remove("panier");
+       // l'autre option: $session->set("panier",[]);
+
+        /* dd($session); */
+        return $this->redirectToRoute("panier_index");
     }
 }
