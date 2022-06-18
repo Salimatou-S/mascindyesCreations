@@ -34,7 +34,7 @@ class ProduitCrudController extends AbstractCrudController
             TextField::new('nom'),
             AssociationField::new('category'),
             AssociationField::new('fournisseur'),
-            AssociationField::new('stocks'),
+            /* AssociationField::new('stocks'), */
             /* AssociationField::new('tailles'), */
             TextField::new('url_image')
                 /* ->setBasePath(self::BASE_PATH) */

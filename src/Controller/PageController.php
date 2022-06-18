@@ -44,10 +44,8 @@ class PageController extends AbstractController
     #[Route('/detail/{slug}', name: 'detail_produit')]
     public function detailProduit(Produit $produit): Response
     { 
-       /*  $produit = $tailleRepository->findTailles($tailles); */
         return $this->render('page/detailproduit.html.twig', [
             'produit' => $produit,
-            /* 'tailles'=>$tailles->getTaille(), */
           
          ]);
     } 
@@ -57,5 +55,16 @@ class PageController extends AbstractController
     { 
         return $this->render('page/pageEnConstruction.html.twig');
     } 
+
+    /* #[Route('nouveaux/category/{slug}', name: 'nouveaux_enfant')]
+    public function nouveauxCategoryEnfant(Category $category,Produit $produits): Response
+    {
+       
+       dd($produits); 
+        return $this->render('test/index.html.twig', [
+            'produits' => $category->getproduits(),
+            'category'=>$category->getName(),
+        ]);
+    } */
   
 }

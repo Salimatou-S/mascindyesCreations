@@ -1,67 +1,67 @@
 {% extends 'mascindye.html.twig' %}
-{# {% extends 'base.html.twig' %} #}
 
-{% block title %}Hello PageController!
+{% block title %}
+	{{produit.nom}}
 {% endblock %}
 
 {% block body %}
 	<main>
-		<div class="about">
-			<div class="trait"> </div>
-			<div class="row row-cols-1 row-cols-sm-2  mx-auto">
-				<div class="col justify-content-center g-4 p-4">
-					<div class="card shadow p-3 mb-5 bg-body p-4">
-						<a href="">
-							<img src="{{app_cdn}}{{produit.urlImage}}" class="card-img-top" alt="...">
-						</a>
-						<div class="card-body ">
-							<h4 class="desc fs-5">Description</h4>
-							<p class="card-text p-0">{{produit.description}}</p>
+		<form action="{{path("panier_add", {id: produit.id})}}" method="post">
+			<div class="about">
+				<div class="trait"></div>
+				<div class="row row-cols-1 row-cols-sm-2  mx-auto">
+					<div class="col justify-content-center g-4 p-4">
+						<div class="card shadow p-3 mb-5 bg-body p-4">
+							<a href="">
+								<img src="{{app_cdn}}{{produit.urlImage}}" class="card-img-top" alt="...">
+							</a>
+							<div class="card-body ">
+								<h4 class="desc fs-5">Description</h4>
+								<p class="card-text p-0">{{produit.description}}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col justify-content-center g-4 p-4 ">
-					<div class="card shadow p-3 mb-5 bg-body rounded p-4">
-						<div class="card-body ">
-							<h5 class="card-title bg-dark text-warning fs-4">{{produit.nom}}</h5>
-							<p class="card-text p-0 m-0 fw-bold">{{produit.category}}
-							</p>
-							{# <p class="card-text p-0">{{produit.description}}</p> #}
-							<p class="card-text p-1 text-primary fw-bold">{{produit.prix}}€
-							</p>
-							<label for="taille-select" class="text-uppercase m-2 ">taille</label>
+					<div class="col justify-content-center g-4 p-4 ">
+						<div class="card shadow p-3 mb-5 bg-body rounded p-4">
+							<div class="card-body ">
+								<h5 class="card-title bg-dark text-warning fs-4">{{produit.nom}}</h5>
+								<p class="card-text p-0 m-0 fw-bold">{{produit.category}}
+								</p>
+								<p class="card-text p-1 text-primary fw-bold">{{produit.prix}}€
+								</p>
+								<label for="taille-select" class="text-uppercase m-2 ">taille</label>
+					
+								<select name="taille" id="taille-select">
+									<option value="">--Choisissez une taille--</option>
 
-							<select name="taille" id="taille-select">
-								<option value="">--Choisissez une taille--</option>
+									{% for stock in produit.stocks %}
+									
+										<option value="{{stock.taille.id}}">{{stock.taille.taille}}</option>
+										
+									{% endfor %}
+								</select>
 
-								{% for stock in produit.stocks %}
-									<option>{{stock.taille.taille}}</option>
-								{% endfor %}
-							</select>
-
-							<label for="quantite-select" class="text-uppercase me-2 ms-4 rounded-2">quantité</label>
-							<select name="quantite" id="quantite-select">
-								<option value="">--Choisissez une quantité--</option>
-								<option value="quantité">1</option>
-								<option value="quantité">2</option>
-								<option value="quantité">3</option>
-								<option value="quantité">4</option>
-								<option value="quantité">5</option>
-								<option value="quantité">6</option>
-								<option value="quantité">7</option>
-								<option value="quantité">8</option>
-								<option value="quantité">9</option>
-								<option value="quantité">10</option>
-							</select>
-							<p class="mt-4">
-								<a href="{{path("panier_add", {id: produit.id})}}" class="btn btn-success btn-sm fs-7">
-									<i class="fa fa-shopping-cart" aria-hidden="true"> Ajouter</i>
-								</a>
-							</p>
+								{% if is_granted("ROLE_USER") %}
+									<p class="mt-4">
+										<input type="submit" value="Ajouter" class="btn btn-success btn-sm fs-7">
+									</p>
+								{% else %}
+									<p class="mt-4">
+										<a href="{{ path('app_login') }}" class="btn btn-success btn-sm fs-7">
+											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+										</a>
+									</p>
+								{% endif %}
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</main>{% endblock %}
+			{# {{ dump(stock) }} #}
+		</form>
+		
+	</main>
+	
+		
+	
+{% endblock %}

@@ -46,6 +46,7 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('MascindyesCreations');
+           
     }
 
     public function configureMenuItems(): iterable

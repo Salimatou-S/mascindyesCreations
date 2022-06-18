@@ -30,24 +30,24 @@
 							<input
 							type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 							{#
-														        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-														        See https://symfony.com/doc/current/security/remember_me.html
-														
-														        <div class="checkbox mb-3">
-														            <label>
-														                <input type="checkbox" name="_remember_me"> Remember me
-														            </label>
-														        </div>
-														    #}
+																					        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																					        See https://symfony.com/doc/current/security/remember_me.html
+																					
+																					        <div class="checkbox mb-3">
+																					            <label>
+																					                <input type="checkbox" name="_remember_me"> Remember me
+																					            </label>
+																					        </div>
+																					    #}
 
-							
-							
-							
-							<button class="btn btn-lg btn-secondary my-3" type="submit">
+
+							<button class="btn btn-lg btn-primary my-3" type="submit">
 								Connexion
 							</button>
 						</form>
-						<a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a>
+
+						<p> <a href="{{ path('app_forgot_password_request') }}" class="text-primary">Mot de passe oublié?</a></p>
+						<p> <a class="nav-link bg-dark rounded" href="{{ path('app_register') }}">Vous n'avez pas de compte? cliquez ici</a></p>
 					</div>
 				</div>
 			</div>
