@@ -13,8 +13,10 @@ class TestController extends AbstractController
     public function index(ProduitRepository $produitRepository): Response
     {
         $produits = $produitRepository->findLastProduitsFemme();
+        $produits1 = $produitRepository->findLastProduitsFille();
         return $this->render('test/index.html.twig', [
             'produits' => $produits,
+            'produits1'=>$produits1
         ]);
     }
 }

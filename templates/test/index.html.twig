@@ -59,59 +59,64 @@
 				</div>
 			</div>
 			<!-- <div class="col-lg-5 d-none d-lg-block">
-												                <div class="embed-responsive embed-responsive-16by9  ">
-												                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Xa29UDKMSRo "
-												                        height="470px" width="450px" allowfullscreen></iframe>
-												                </div>
-												            </div>  -->
+																					                <div class="embed-responsive embed-responsive-16by9  ">
+																					                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Xa29UDKMSRo "
+																					                        height="470px" width="450px" allowfullscreen></iframe>
+																					                </div>
+																					            </div>  -->
 		</div>
 		<div class="nouv">
 			<p class="nouv">Nouveautés</p>
 		</div>
-		<div class="container marketing">
-
-			<div class="row">
-			{{dump(produits)}}
+		<div class="container marketing ">
+			<div class="row ">
 				{% for produit in produits %}
-					
-				
-				<div class="col-lg-2">
-					<img src="{{app_cdn}}{{produit.urlImage}}" {# width="250" #} {# height="300" #} class="img-fluid " alt="..."> 
-					<h2>{{produit.nom}}</h2>
-					{# <p>Collection femme - chic et décontractée</p>
-																				<span>150€</span> #}
-				</div>{% endfor %}
+					<div class="col-lg-2  ">
+						<img src="{{app_cdn}}{{produit.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+						<h2 class="p-2">{{produit.nom}}</h2>
+						{# <p>Collection femme - chic et décontractée</p> #}
+						<span>{{produit.prix}} €</span>
+					</div>
+				{% endfor %}
+				{% for produit1 in produits1 %}
+					<div class="col-lg-2 ">
+						<img src="{{app_cdn}}{{produit1.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+						<h2 class="p-2">{{produit1.nom}}</h2>
+						<span>{{produit1.prix}} €</span>
+						{# <p>Collection femme - chic et décontractée</p>																				<span>150€</span> #}
+					</div>
+				{% endfor %}
 				{#
-																	<div class="col-lg-2">
-																		<img src="{{asset('mascindye/images/vente7.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
-																		<h2>Petunia</h2>
-																		<p>Accessoires - Fait mains</p>
-																		<span>90€</span>
-																	</div>
-																	<div class="col-lg-2">
-																		<img src="{{asset('mascindye/images/vente8.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
-																		<h2>Lolita</h2>
-																		<p>Collection femme - Chic et décontractée</p>
-																		<span>150€</span>
-																	</div>
-																	<div class="col-lg-2">
-																		<img src="{{asset('mascindye/images/vente9.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
-																		<h2>Magenta</h2>
-																		<p>Accessoires - Sac et chaussures</p>
-																		<span>150€</span>
-																	</div>
-																	<div class="col-lg-2">
-																		<img src="{{asset('mascindye/images/vente11.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
-																		<h2>Julia</h2>
-																		<p>Collection fille - Robe de cérémonie</p>
-																		<span>60€</span>
-																	</div>
-																	<div class="col-lg-2">
-																		<img src="{{asset('mascindye/images/fi_4-mini.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
-																		<h2>Sherry</h2>
-																		<p>Collection fille - Tenue de soirée</p>
-																		<span>70€</span>
-																	</div> #}
+																													<div class="col-lg-2">
+																														<img src="{{asset('mascindye/images/vente7.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+																														<h2>Petunia</h2>
+																														<p>Accessoires - Fait mains</p>
+																														<span>90€</span>
+																													</div>
+																													<div class="col-lg-2">
+																														<img src="{{asset('mascindye/images/vente8.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+																														<h2>Lolita</h2>
+																														<p>Collection femme - Chic et décontractée</p>
+																														<span>150€</span>
+																													</div>
+																													<div class="col-lg-2">
+																														<img src="{{asset('mascindye/images/vente9.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+																														<h2>Magenta</h2>
+																														<p>Accessoires - Sac et chaussures</p>
+																														<span>150€</span>
+																													</div>
+																													<div class="col-lg-2">
+																														<img src="{{asset('mascindye/images/vente11.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+																														<h2>Julia</h2>
+																														<p>Collection fille - Robe de cérémonie</p>
+																														<span>60€</span>
+																													</div>
+																													<div class="col-lg-2">
+																														<img src="{{asset('mascindye/images/fi_4-mini.jpg')}}" width="250" height="300" class="img-fluid" alt="...">
+																														<h2>Sherry</h2>
+																														<p>Collection fille - Tenue de soirée</p>
+																														<span>70€</span>
+																													</div> #}
 			</div>
 		</div>
 	</main>

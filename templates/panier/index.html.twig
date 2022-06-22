@@ -5,147 +5,132 @@
 
 {% block body %}
 
-	<div class="container">
-		<div class="row text-uppercase text-center m-4">
-			<h4>panier</h4>
-		</div>
-		<div class="row ">
-			<div class="col-sm-12 col-md-10 col-md-offset-1 m-auto">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Produit</th>
-							<th>Taille</th>
-							<th></th>
-							<th>Quantité</th>
-							<th></th>
-							<th class="text-center">Prix</th>
-							<th class="text-center">Total</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for element in panier %}
-							<tr>
-								<td class="col-sm-8 col-md-6">
-									<div class="media">
-										<a class="thumbnail pull-left" href="#">
-											<img class="media-object rounded " src="{{app_cdn}}{{element.produit.urlImage}} " style="width: 72px; height: 72px;">
-										</a>
-										<div class="media-body">
-											<h4 class="media-heading fs-6">
-												<a href="#">{{element.produit.nom}}</a>
-											</h4>
-											<span>Status:
-											</span>
-											<span class="text-success">
-												<strong>En stock</strong>
-											</span>
-										</div>
-									</div>
-								</td>
-								<td class="col-sm-1 col-md-1 text-center fw-bold">
-								<strong>{{element.taille.taille}} </strong> {# <strong class="align-top">xl</strong> #}
-								</td>
-								{# <td class="col-sm-1 col-md-1">
-									<a href="{{path("panier_remove", {id: element.produit.id})}}" class="btn btn-warning">
-										-
-									</a>
-								</td> #}
-								<td class="col-sm-1 col-md-1 text-center" >
-									<input type="email" class="form-control" id="exampleInputEmail1" value="{{element.qt}} ">
-								</td>
-								{# <td class="col-sm-1 col-md-1">
-									<a href="{{path("panier_add", {id: element.produit.id})}}" class="btn btn-success">
-										+
-									</a>
-								</td> #}
-								<td class="col-sm-1 col-md-1 text-center">
-									<strong>{{element.produit.prix}}
-										€</strong>
-								</td>
-								<td class="col-sm-1 col-md-1 text-center">
-									<strong>{{element.produit.prix * element.qt}}
-										€</strong>
-								</td>
-								{# <td class="col-sm-1 col-md-1">
-									<a href="{{path("panier_add", {id: element.produit.id})}}" class="btn btn-success">
-										Ajouter
-									</a>
-								</td> #}
-								{# <td class="col-sm-1 col-md-1">
-									<a href="{{path("panier_delete", {id: element.produit.id})}}" class="btn btn-danger">
-										Supprimer
-									</a> #}
-									{# <button type="button" class="btn btn-danger">
-																			Supprimer
-																		</button> #}
-								</td>
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="6" class="text-center text-primary fw-bold fs-5 ">Votre panier est vide !</td>
-							</tr>
-						{% endfor %}
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td colspan="2">
-								<h5>Frais de port:</h5>
-							</td>
-							<td colspan="3" class="text-right">
-								<h5>
-									<strong>taxe</strong>
-								</h5>
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							
-							<td colspan="2">
-								<h5>Total:
-								</h5>
-							</td>
-							{# <td class="text-right">
-								<h5>
-									<strong>{{total}}
-										€</strong>
-								</h5>
-							</td> #}
-							{# <td class="col-sm-1 col-md-1">
-									<a href="{{path("panier_delete_all")}}" class="btn btn-danger">
-										Supprimer
-									</a> #}
-									{# <button type="button" class="btn btn-danger">
-																			Supprimer
-																		</button> #}
-							{# 	</td> #}
-						</tr>
-						<tr>
-							<td>
-								<a
-									href="{{path('category_parent',{slug:'collection-femme'})}}" type="button" class="btn btn-secondary">
-									{# <button type="button" class="btn btn-secondary"> #}
-									Continuer votre shopping
-									{# </button> #}
-								</a>
-							</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td>
-
-								<button type="button" class="btn btn-success ">
-									commander
-								</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+<div class="container">
+	<div class="row text-uppercase text-center m-4">
+		<h4>panier</h4>
 	</div>
-	{{dump()}}
-{% endblock %}
+	<div class="row ">
+		<div class="col-sm-12 col-md-10 col-md-offset-1 m-auto">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th class="text-center">Taille</th>
+						<th class="text-center">Quantité</th>
+						{# <th></th>
+												<th></th> #}
+						<th class="text-center">Prix</th>
+						<th class="text-center">Sous-total</th>
+						{# <th>Actions</th> #}
+					</tr>
+				</thead>
+				<tbody>
+					{% for element in panier.lignes %}
+						<tr>
+							<td class="col-sm-8 col-md-6">
+								<div class="media">
+									<a class="thumbnail pull-left" href="#">
+										<img class="media-object rounded " src="{{app_cdn}}{{element.produit.urlImage}} " style="width: 72px; height: 72px;">
+									</a>
+									<div class="media-body">
+										<h4 class="media-heading fs-6">
+											<a href="#">{{element.produit.nom}}</a>
+										</h4>
+										<span>Status:
+										</span>
+										<span class="text-success">
+											<strong>En stock</strong>
+										</span>
+									</div>
+								</div>
+							</td>
+							<td class="col-sm-1 col-md-1 text-center {# fw-bold #}">
+								<strong>{{element.taille.taille}}
+								</strong>
+							</td>
+							{# <td class="col-sm-1 col-md-1">
+																							<a href="{{path("panier_remove", {id: element.produit.id})}}" class="btn btn-warning">
+																								-
+																							</a>
+																						</td> #}
+							<td class="col-sm-1 col-md-1 text-center">
+								<input type="email" class="form-control text-center" id="exampleInputEmail1" value="{{element.qt}} ">
+							</td>
+							{# <td class="col-sm-1 col-md-1">
+																							<a href="{{path("panier_add", {id: element.produit.id})}}" class="btn btn-success">
+																								+
+																							</a>
+																						</td> #}
+							<td class="col-sm-1 col-md-1 text-center">
+								<strong>{{element.produit.prix}} €</strong>
+							</td>
+							<td class="col-sm-1 col-md-1 text-center">
+								<strong>{{element.totalligne}}
+									€</strong>
+							</td>
+							{# <td class="col-sm-1 col-md-1">
+																							<a href="{{path("panier_add", {id: element.produit.id})}}" class="btn btn-success">
+																								Ajouter
+																							</a>
+																						</td> #}
+						{# <td class="col-sm-1 col-md-1">
+																					<a href="{{path("panier_delete", {id: element.produit.id})}}" class="btn btn-danger">
+																						Supprimer
+																					</a> #}
+							{# <button type="button" class="btn btn-danger">
+																																	Supprimer
+																																</button> #}
+						</tr>
+					</td>
+				</tbody>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="5" class="text-center text-primary fw-bold fs-5 ">Votre panier est vide !</td>
+			</tr>
+		{% endfor %}
+		<tr>
+			<td></td>
+			<td></td>
+
+			<td colspan="5">
+				<h5 class="text-center">Total: </h5>
+			</td>
+			<td>{{panier.totalcommande}}</td>
+			{# <td class="text-right">
+														<h5>
+						
+															<strong>{{total}}
+																€</strong>
+														</h5>
+													</td> #}
+		{# <td class="col-sm-1 col-md-1">
+													<a href="{{path("panier_delete_all")}}" class="btn btn-danger">
+														Supprimer
+													</a> #}
+			{# <button type="button" class="btn btn-danger">
+																									Supprimer
+																								</button> #}
+			{# 	</td> #}
+		</tr>
+		<tr>
+			<td>
+				<a href="{{path('category_parent',{slug:'collection-femme'})}}" type="button" class="btn btn-secondary">
+					Continuer votre shopping
+					{#  #}
+				</a>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+			<a href="{{path('app_commande')}}" type="button" class="btn btn-success"> commander </a> 
+			</td> 
+			</tr> 
+			</tbody> 
+			</table> 
+			</div> 
+			</div> 
+			</div> 
+			{{dump()}} 
+			{% endblock %}

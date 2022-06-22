@@ -64,12 +64,16 @@ class Produit
     #[ORM\Column(type: 'string', length: 50)]
     private $slug;
 
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Avis::class, orphanRemoval: true)]
+    private $avis;
+
   
 
     public function __construct()
     {
         $this->stocks = new ArrayCollection();
         $this->rapports = new ArrayCollection();
+        $this->avis = new ArrayCollection();
     }
 
 
@@ -274,6 +278,36 @@ class Produit
        public function setSlug(string $slug): self
        {
            $this->slug = $slug;
+
+           return $this;
+       }
+
+       /**
+        * @return Collection<int, Avis>
+        */
+       public function getAvis(): Collection
+       {
+           return $this->avis;
+       }
+
+       public function addAvi(Avis $avi): self
+       {
+           if (!$this->avis->contains($avi)) {
+               $this->avis[] = $avi;
+               $avi->setProduit($this);
+           }
+
+           return $this;
+       }
+
+       public function removeAvi(Avis $avi): self
+       {
+           if ($this->avis->removeElement($avi)) {
+               // set the owning side to null (unless already changed)
+               if ($avi->getProduit() === $this) {
+                   $avi->setProduit(null);
+               }
+           }
 
            return $this;
        } 

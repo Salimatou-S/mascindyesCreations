@@ -3,15 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Entity\Produit;
-use App\Entity\Category;
-use Symfony\Component\HttpFoundation\Response;
-use App\Controller\Admin\ProduitCrudController;
-use App\Entity\Fournisseur;
 use App\Entity\Stock;
 use App\Entity\Taille;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use App\Entity\Produit;
+use App\Entity\Category;
+use App\Entity\Commande;
+use App\Entity\Fournisseur;
+use Symfony\Component\HttpFoundation\Response;
+use App\Controller\Admin\ProduitCrudController;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
