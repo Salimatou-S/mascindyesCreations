@@ -2,43 +2,50 @@
 
 namespace App\Controller;
 
+use App\Entity\Rapport;
 use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\ProduitRepository;
-use App\Repository\RapportRepository;
+use App\Repository\TailleRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommandeController extends AbstractController
 {
     #[Route('/commande', name: 'app_commande')]
-    public function index(Request $request, ManagerRegistry $doctrine, ProduitRepository $produitRepository, SessionInterface $session,RapportRepository $rapportRepository): Response
+    public function index(Request $request, TailleRepository $tailleRepository, ProduitRepository $produitRepository, ManagerRegistry $doctrine, SessionInterface $session): Response
     {
-        $commande= new Commande ();
-        $form= $this->createForm(CommandeType::class);
+        $user = $this->getUser();
+        $form = $this->createForm(CommandeType::class, $user);
+        $form->handleRequest($request); //inspecte la requête et appelle le lien si soumission
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $doctrine->getManager();
+            
+            $commande = new Commande();
+            $commande->setUser($user);
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
-            $commande->setUser($this->getUser());
-            $em=$doctrine->getManager();
+            $panier = $session->get('panier');
+            $commande->setMontantTTc($panier['totalcommande']);
             $em ->persist($commande);
-            dd($commande);
-            $em->flush();
 
-            $panier = $session->get('panier', []);
-            /* dd($panier); */
-            $datapanier=[];
+            foreach ($panier['lignes'] as $ligne) {
+                $rapport= new Rapport();
+                $produit= $produitRepository->find($ligne['idp']);
+                $rapport->setProduit($produit);
+                $rapport->setCommande($commande);
+                $rapport->setQuantite($ligne['qt']);
+                $rapport->setPrix($ligne['prix']);
+                $taille= $tailleRepository->find($ligne['idt']);
+                $rapport->setTaille($taille);
 
-        // $panier=$session->get('panier',[]);
-        // foreach ($panier as $idp=>$panier){
-        //     $rapport=$rapportRepository->findBy($idp);
-        //     dd($rapport);
-        //}
-
+                $em ->persist($rapport);
+            }
+           $em->flush();
+           return $this->redirectToRoute('home');
         }
         return $this->render('commande/index.html.twig', [
             'commandeform' => $form->createView(),

@@ -6,6 +6,7 @@ use App\Repository\CommandeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -15,23 +16,20 @@ class Commande
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    
+    #[ORM\Column(type: 'string', length: 255,nullable:true)]
     private $reference_commande;
 
     #[ORM\Column(type: 'float')]
     private $montant_TTc;
 
-    #[ORM\Column(type: 'datetime')]
-    private $date_creation;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $date_livraison;
 
-    #[ORM\Column(type: 'float', nullable: true)]
-    private $frais_livraison;
+    
 
-    #[ORM\Column(type: 'float')]
-    private $montant_total_ttc;
+   
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -39,6 +37,12 @@ class Commande
 
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Rapport::class)]
     private $rapports;
+
+    #[Gedmo\Timestampable(on:"create")] 
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $createdAt;
+
+    
 
     public function __construct()
     {
@@ -74,17 +78,7 @@ class Commande
         return $this;
     }
 
-    public function getDateCreation(): ?\DateTimeInterface
-    {
-        return $this->date_creation;
-    }
-
-    public function setDateCreation(\DateTimeInterface $date_creation): self
-    {
-        $this->date_creation = $date_creation;
-
-        return $this;
-    }
+   
 
     public function getDateLivraison(): ?\DateTimeInterface
     {
@@ -98,29 +92,7 @@ class Commande
         return $this;
     }
 
-    public function getFraisLivraison(): ?float
-    {
-        return $this->frais_livraison;
-    }
 
-    public function setFraisLivraison(?float $frais_livraison): self
-    {
-        $this->frais_livraison = $frais_livraison;
-
-        return $this;
-    }
-
-    public function getMontantTotalTtc(): ?float
-    {
-        return $this->montant_total_ttc;
-    }
-
-    public function setMontantTotalTtc(float $montant_total_ttc): self
-    {
-        $this->montant_total_ttc = $montant_total_ttc;
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -163,4 +135,18 @@ class Commande
 
         return $this;
     }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+   
 }

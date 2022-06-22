@@ -18,6 +18,7 @@ class CommandeType extends AbstractType
             ->add('code_postal')
             ->add('ville')
             ->add('soumettre', SubmitType::class)
+            
         ;
     }
 

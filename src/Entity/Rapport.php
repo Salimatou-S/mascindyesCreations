@@ -14,7 +14,7 @@ class Rapport
     private $id;
 
     #[ORM\Column(type: 'integer')]
-    private $quantité;
+    private $quantite;
 
     #[ORM\Column(type: 'float')]
     private $prix;
@@ -27,19 +27,23 @@ class Rapport
     #[ORM\JoinColumn(nullable: false)]
     private $commande;
 
+    #[ORM\ManyToOne(targetEntity: Taille::class, inversedBy: 'rapports')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $taille;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getQuantité(): ?int
+    public function getQuantite(): ?int
     {
-        return $this->quantité;
+        return $this->quantite;
     }
 
-    public function setQuantité(int $quantité): self
+    public function setQuantite(int $quantite): self
     {
-        $this->quantité = $quantité;
+        $this->quantite = $quantite;
 
         return $this;
     }
@@ -76,6 +80,18 @@ class Rapport
     public function setCommande(?Commande $commande): self
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getTaille(): ?Taille
+    {
+        return $this->taille;
+    }
+
+    public function setTaille(?Taille $taille): self
+    {
+        $this->taille = $taille;
 
         return $this;
     }

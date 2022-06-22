@@ -23,9 +23,13 @@ class Taille
     #[ORM\OneToMany(mappedBy: 'taille', targetEntity: Stock::class)]
     private $stocks;
 
+    #[ORM\OneToMany(mappedBy: 'taille', targetEntity: Rapport::class)]
+    private $rapports;
+
     public function __construct()
     {
         $this->stocks = new ArrayCollection();
+        $this->rapports = new ArrayCollection();
     }
 
     
@@ -77,6 +81,36 @@ class Taille
             // set the owning side to null (unless already changed)
             if ($stock->getTaille() === $this) {
                 $stock->setTaille(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rapport>
+     */
+    public function getRapports(): Collection
+    {
+        return $this->rapports;
+    }
+
+    public function addRapport(Rapport $rapport): self
+    {
+        if (!$this->rapports->contains($rapport)) {
+            $this->rapports[] = $rapport;
+            $rapport->setTaille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRapport(Rapport $rapport): self
+    {
+        if ($this->rapports->removeElement($rapport)) {
+            // set the owning side to null (unless already changed)
+            if ($rapport->getTaille() === $this) {
+                $rapport->setTaille(null);
             }
         }
 

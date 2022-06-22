@@ -66,21 +66,18 @@
 								<td colspan="5" class="text-center text-primary fw-bold fs-5 ">Votre panier est vide !</td>
 							</tr>
 						{% endfor %}
-							<tr>
-							{# <td></td>
-							<td></td> #}
-
+						<tr>
 							<td colspan="4">
-								<h5 class="text-center">Total:
-								</h5>
+								<h5 class="text-center">Total:</h5>
 							</td>
-							<td>{{panier.totalcommande}}</td>
+							<td>
+								{{panier.totalcommande}}
+							</td>
 						</tr>
 						<tr>
 							<td>
-								<a href="{{path('category_parent',{slug:'collection-femme'})}}" type="button" class="btn btn-secondary">
-									Continuer votre shopping
-
+								<a href="{{path('category_parent',{slug:'collection-femme'})}}" type="button" class="btn btn-default">
+									<i class="fa fa-shopping-cart" aria-hidden="true"></i>Continuer votre shopping
 								</a>
 							</td>
 							<td></td>
@@ -99,14 +96,14 @@
 	</div>
 	{{dump()}}
 {% endblock %}{# <td class="col-sm-1 col-md-1">
-																									<a href="{{path("panier_remove", {id: element.produit.id})}}" class="btn btn-warning">
-																										-
-																									</a>
-																								</td> #}{# <td class="col-sm-1 col-md-1">
-																									<a href="{{path("panier_add", {id: element.produit.id})}}" class="btn btn-success">
-																										+
-																									</a>
-																								</td> #}
+																										<a href="{{path("panier_remove", {id: element.produit.id})}}" class="btn btn-warning">
+																											-
+																										</a>
+																									</td> #}{# <td class="col-sm-1 col-md-1">
+																										<a href="{{path("panier_add", {id: element.produit.id})}}" class="btn btn-success">
+																											+
+																										</a>
+																									</td> #}
 {# <td class="col-sm-1 col-md-1">
 																								<a href="{{path("panier_add", {id: element.produit.id})}}" class="btn btn-success">
 																									Ajouter
