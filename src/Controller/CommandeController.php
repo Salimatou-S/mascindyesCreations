@@ -19,36 +19,51 @@ class CommandeController extends AbstractController
     #[Route('/commande', name: 'app_commande')]
     public function index(Request $request, TailleRepository $tailleRepository, ProduitRepository $produitRepository, ManagerRegistry $doctrine, SessionInterface $session): Response
     {
-        $user = $this->getUser();
-        $form = $this->createForm(CommandeType::class, $user);
+        $user = $this->getUser();//on recupere le user connecté qu'on stocke dans la variable user
+        $form = $this->createForm(CommandeType::class, $user);//on relie le formulaire au user
         $form->handleRequest($request); //inspecte la requête et appelle le lien si soumission
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $doctrine->getManager();
+        if ($form->isSubmitted() && $form->isValid()) {//si le formulaire est soumis et est valide
+            $em = $doctrine->getManager(); //on recupère le manager de doctrine
             
-            $commande = new Commande();
-            $commande->setUser($user);
+            $commande = new Commande();//on fait appel à une nouvelle instance de commande
+            $commande->setUser($user);//on relie la commande au user
 
-            $panier = $session->get('panier');
-            $commande->setMontantTTc($panier['totalcommande']);
-            $em ->persist($commande);
+            $panier = $session->get('panier');//on recupère le panier
+            $commande->setMontantTTc($panier['totalcommande']);//on stocke le montant total de la commade dans un variable
+            $em ->persist($commande);//on persist la commande dans la base
 
-            foreach ($panier['lignes'] as $ligne) {
-                $rapport= new Rapport();
-                $produit= $produitRepository->find($ligne['idp']);
-                $rapport->setProduit($produit);
-                $rapport->setCommande($commande);
-                $rapport->setQuantite($ligne['qt']);
-                $rapport->setPrix($ligne['prix']);
-                $taille= $tailleRepository->find($ligne['idt']);
+            foreach ($panier['lignes'] as $ligne) {// on parcourt les lignes du panier et on recupère à chaque tour de boucle toutes les infos d'une ligne. 
+                $rapport= new Rapport();//on va créer autant d'instances que necessaire dans la table de jointure Rapport et chaque instance doit pointer vers produit et vers commande. L'id est autoincrémenté. Il faut le produit_id. On va hydrater l'instance. Dans chaque propriété, il faut une valeur.
+                $produit= $produitRepository->find($ligne['idp']);//on va recuperer l'instance du produit grâce à l'identifiant qui est dans la ligne du panier 
+                $rapport->setProduit($produit);//on va relier l'instance de produit avec l'instance de rapport
+                $rapport->setCommande($commande);//
+                $rapport->setQuantite($ligne['qt']);//on recupère la quantité qui vient du panier et on l'affecte à linstance rapport
+                $rapport->setPrix($ligne['prix']);//on recupère le prix
+                $taille= $tailleRepository->find($ligne['idt']);//Comme c'est une relation, on retrouve l'instance de la taille pour pouvoir l'associer à la relation.
                 $rapport->setTaille($taille);
 
-                $em ->persist($rapport);
+                $em ->persist($rapport);//on persiste à chaque tour de boucle 
             }
-           $em->flush();
-           return $this->redirectToRoute('home');
+            $em->flush(); //va faire toutes les requêtes insert
+            $session->remove('panier');
+           /*  dd($commande->getRapports());  */
+            return $this->render('recap_commande/index.html.twig', [
+                'commande' => $commande,
+                'rapport'=>$rapport 
+                 
+            ]);
         }
         return $this->render('commande/index.html.twig', [
             'commandeform' => $form->createView(),
         ]);
     }
+
+   /*  #[Route('/test/{id}', name: 'app_test')]
+    public function test(Commande $commande): Response
+    {
+        foreach ($commande->getRapports() as $rapport) {
+            dd($rapport);
+        }
+        
+    } */
 }

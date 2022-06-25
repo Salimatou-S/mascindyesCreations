@@ -1,20 +1,161 @@
-{% extends 'base.html.twig' %}
+{% extends 'mascindye.html.twig' %}
 
 {% block title %}Hello RecapCommandeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/MascindyesCreations/src/Controller/RecapCommandeController.php'|file_link(0) }}">src/Controller/RecapCommandeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/MascindyesCreations/templates/recap_commande/index.html.twig'|file_link(0) }}">templates/recap_commande/index.html.twig</a></code></li>
-    </ul>
+<div class="container">
+{{dump(commande)}} 
+{{dump(rapport)}}
+
+		<div class="row text-uppercase text-center m-4">
+			<h4>RECAPITULATIF DE LA COMMANDE</h4>
+            <span> Merci {{commande.user.prenom}} pour cotre achat!  </span>
+			<p>Votre commande d'un montant total de {{commande.montantTTc}} est validée !</p>
+		</div>
+		<div class="row ">
+			<div class="col-sm-12 col-md-10 col-md-offset-1 m-auto">
+				<table class="table ">
+					<thead>
+						<tr>
+							<th>Produit</th>
+							<th class="text-center">Taille</th>
+							<th class="text-center">Quantité</th>
+							<th class="text-center">Prix</th>
+							<th class="text-center">Sous-total</th>
+
+						</tr>
+					</thead>
+					<tbody>
+					{# {{dump(commande.rapports)}} #}
+						{% for rapport in rapports %}
+							<tr>
+								<td class="col-sm-8 col-md-6">
+									<div class="media">
+									
+											<h4 class="media-heading fs-6">
+										{{rapports.produit.nom}}   
+											</h4>
+											
+										</div>
+									</div>
+								</td>
+								<td class="col-sm-1 col-md-1 text-center {# fw-bold #}">
+									<strong>{{rapports.taille.taille}}   
+									</strong>
+								</td>
+
+								<td class="col-sm-1 col-md-1 text-center">
+									<strong>{{rapports.quantite}}  
+										</strong>
+								</td>
+								<td class="col-sm-1 col-md-1 text-center">
+									<strong>{{rapports.prix}} 
+										€</strong>
+								</td>
+								<td class="col-sm-1 col-md-1 text-center">
+									<strong>{# {{rapport.totalligne}} #}  {{rapports.prix * rapports.quantite}}
+										€</strong>
+								</td>
+							</tr>
+		
+						{% endfor %}
+						<tr>
+							<td colspan="4">
+								<h5 class="text-center">Total:</h5>
+							</td>
+							<td>
+								{{rapports.commande.montantTTc}}   
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="{{path('category_parent',{slug:'collection-femme'})}}" type="button" class="btn btn-default">
+									<i class="fa fa-shopping-cart" aria-hidden="true"></i>Continuer votre shopping
+								</a>
+							</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<a href="{{path('app_commande')}}" type="button" class="btn btn-success">
+									commander
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+{# <div class="titre">
+{{dump(rapport)}}
+Bonjour {{rapport.commande.user.nom}}. Votre commande a bien été prise en compte. Vous trouverez ci-dessous le récapitulatif.
 </div>
+<table class="table m-5">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Produit</th>
+      <th scope="col">Taille</th>
+      <th scope="col">Quantité</th>
+      <th scope="col">Prix</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{rapport.produit.nom}}</td>
+      <td>{{rapport.commande.user.nom}}</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+</div> #}
 {% endblock %}
