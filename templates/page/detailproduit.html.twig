@@ -24,26 +24,26 @@
 					<div class="col justify-content-center g-4 p-4 ">
 						<div class="card shadow p-3 mb-5 bg-body rounded p-4">
 							<div class="card-body ">
-								<h5 class="card-title bg-dark text-warning fs-4">{{produit.nom}}</h5>
+								<h5 class="card-title fs-4">{{produit.nom}}</h5>
 								<i class="fa fa-star text-warning" aria-hidden="true"></i>
 								<i class="fa fa-star text-warning" aria-hidden="true"></i>
 								<i class="fa fa-star text-warning" aria-hidden="true"></i>
 								<i class="fa fa-star text-warning" aria-hidden="true"></i>
 								<i class="fa fa-star-half text-warning" aria-hidden="true"></i>
-								
+
 								<p class="card-text p-0 m-0 fw-bold">{{produit.category}}
 								</p>
 								<p class="card-text p-1 text-primary fw-bold">{{produit.prix}}€
 								</p>
 								<label for="taille-select" class="text-uppercase m-2 ">taille</label>
-					
+
 								<select name="taille" id="taille-select">
 									<option value="">--Choisissez une taille--</option>
 
 									{% for stock in produit.stocks %}
-									
+
 										<option value="{{stock.taille.id}}">{{stock.taille.taille}}</option>
-										
+
 									{% endfor %}
 								</select>
 
@@ -59,23 +59,93 @@
 									</p>
 								{% endif %}
 							</div>
-							<div>
-							<h5 class="text-uppercase fs-6">Commentaires (  )</h5>
-							<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis non sapiente numquam iste ullam id beatae provident, amet exercitationem laudantium ducimus sequi dolores corporis aspernatur eos ea quo quaerat voluptates praesentium vitae, libero sint alias. Ipsum, vero inventore nobis, in nam distinctio quae culpa consequuntur debitis veniam aliquid saepe eos vel qui, pariatur quis maxime excepturi deserunt perferendis iste atque. Impedit, vitae! Placeat doloremque
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis non sapiente numquam iste ullam id beatae provident, amet exercitationem laudantium ducimus sequi dolores corporis aspernatur eos ea quo quaerat voluptates praesentium vitae, libero sint alias. Ipsum, vero inventore nobis, in nam distinctio quae culpa consequuntur debitis veniam aliquid saepe eos vel qui, pariatur quis maxime excepturi deserunt perferendis iste atque. Impedit, vitae! Placeat doloremque
-							 </div>
 						</div>
-						</div>
-						
 					</div>
-
 				</div>
 			</div>
-			{# {{ dump(stock) }} #}
 		</form>
-		
+		<div class="row row-cols-1 row-cols-sm-2  mx-auto">
+			<div class="col justify-content-center g-4 p-4 ">
+				<div class="card shadow p-3 mb-5 bg-body rounded p-4">
+					<div class="card-body ">
+
+						{% set sommeCommentaire = 0 %}
+						{% set moyenneCommentaire = 0 %}
+						{% if produit.commentaires | length > 0 %}
+
+							{% for commentaire  in produit.commentaires %}
+								{% set sommeCommentaire = sommeCommentaire + commentaire.note %}
+
+								{# {{dump(commentaire)}} #}
+							{% endfor %}
+							{% set moyenneCommentaire = sommeCommentaire /(produit.commentaires | length) %}
+
+							<div>
+								<h5 class="text-uppercase fs-5 p-2">
+									Avis clients ( {{moyenneCommentaire}} )</h5>
+							</div>
+						{% endif %}
+
+
+						{% for commentaire  in produit.commentaires %}
+							<p class="card-text p-0 m-0 text-uppercase{# fw-bold #}">
+								<i class="fa-solid fa-circle-user text-warning"></i>
+								{{ commentaire.user.pseudo}}</p>
+							<p class="card-text p-0 m-0 fw-bold">
+								<span>Note:
+									{{commentaire.note}}/5</span>
+								{{commentaire.titre}}</p>
+							<p class="card-text p-0 m-0 ">commenté
+								{{ commentaire.createdAt | ago}}
+							</p>
+						</p>
+						<p class="card-text p-1">{{commentaire.contenu}}
+						</p>
+
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mx-4 col-6">
+		{% if is_granted("ROLE_USER") %}
+			<h2>Ajout d'un commentaire</h2>
+			{{ form(form) }}{% endif %}
+		</div>
 	</main>
-	
-		
-	
 {% endblock %}
+{# <div> #}
+{# <h5 class="text-uppercase fs-6 p-3">
+								Avis clients (  )</h5>
+							{% for commentaire  in produit.commentaires %}
+								<p>{{commentaire.createdAt}},
+									{{commentaire.user.pseudo}}
+									a écrit:</p>
+								<p>{{commentaire.produit.titre}}</p>
+								<span>{{commentaire.note}}</span>
+								<div>
+									{{commentaire.contenu}}
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis non sapiente numquam iste ullam id beatae provident, amet exercitationem laudantium ducimus sequi dolores corporis aspernatur eos ea quo quaerat voluptates praesentium vitae, libero sint alias. Ipsum, vero inventore nobis, in nam distinctio quae culpa consequuntur debitis veniam aliquid saepe eos vel qui, pariatur quis maxime excepturi deserunt perferendis iste atque. Impedit, vitae! Placeat doloremque
+								</div>
+							</div>
+							<div>
+							{% endfor %}
+							{% if is_granted("ROLE_USER") %}
+								<h2>Ajout d'un commentaire</h2>
+							{{ form(form) }}
+							{% endif %}
+							</div> #}
+{# </main>{% endblock %} #}
+{# {% for avis in produit.avis %} #}
+{# {{dump(avis)}} #}
+{# <div id="comms2">
+																								<div id="comms"> #}
+{# <p>{{avis.contenu}}</p> #}
+{# <p id="datecomms">Le
+																										{{commentaire.DateCommentaire | format_datetime( locale='fr',pattern="dd MMMM YYYY")}}</p>
+																									{% if is_granted("ROLE_USER") and commentaire.utilisateur.id == app.user.id %}
+																										<a href="{{ path('app_sujet_commentaire_delete', {id: commentaire.id}) }}" class="btn btn-danger btn-sm" onclick="return confirm('Suppression ?')">Supprimer</a>
+																									{% endif %} #}
+{# {% endfor %}
+																								</div>
+																							</div> #}

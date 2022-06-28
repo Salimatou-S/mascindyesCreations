@@ -40,7 +40,7 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     public function findProduitsByParentCategory($category): array
-    {
+    {//requête préparée
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
@@ -51,7 +51,7 @@ class CategoryRepository extends ServiceEntityRepository
                 FROM App\Entity\Category c
                 WHERE c.parent = :val)'
         )
-        ->setParameter('val', $category)
+        ->setParameter('val', $category)// on passe le paramètre. On bind le paramètre
         // ->setMaxResults($nb)
         ;
         return $query->getResult();

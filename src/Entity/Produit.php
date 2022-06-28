@@ -64,8 +64,10 @@ class Produit
     #[ORM\Column(type: 'string', length: 50)]
     private $slug;
 
-    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Avis::class, orphanRemoval: true)]
-    private $avis;
+   
+
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Commentaire::class, orphanRemoval: true)]
+    private $commentaires;
 
   
 
@@ -73,7 +75,7 @@ class Produit
     {
         $this->stocks = new ArrayCollection();
         $this->rapports = new ArrayCollection();
-        $this->avis = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
 
@@ -282,30 +284,32 @@ class Produit
            return $this;
        }
 
+      
+
        /**
-        * @return Collection<int, Avis>
+        * @return Collection<int, Commentaire>
         */
-       public function getAvis(): Collection
+       public function getCommentaires(): Collection
        {
-           return $this->avis;
+           return $this->commentaires;
        }
 
-       public function addAvi(Avis $avi): self
+       public function addCommentaire(Commentaire $commentaire): self
        {
-           if (!$this->avis->contains($avi)) {
-               $this->avis[] = $avi;
-               $avi->setProduit($this);
+           if (!$this->commentaires->contains($commentaire)) {
+               $this->commentaires[] = $commentaire;
+               $commentaire->setProduit($this);
            }
 
            return $this;
        }
 
-       public function removeAvi(Avis $avi): self
+       public function removeCommentaire(Commentaire $commentaire): self
        {
-           if ($this->avis->removeElement($avi)) {
+           if ($this->commentaires->removeElement($commentaire)) {
                // set the owning side to null (unless already changed)
-               if ($avi->getProduit() === $this) {
-                   $avi->setProduit(null);
+               if ($commentaire->getProduit() === $this) {
+                   $commentaire->setProduit(null);
                }
            }
 

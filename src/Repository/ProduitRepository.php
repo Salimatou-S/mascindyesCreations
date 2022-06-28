@@ -67,6 +67,18 @@ class ProduitRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findLastProduitsAccessoires(int $nb =2)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.category =10')
+            ->orWhere('p.category = 11')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults($nb)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
    /*  public function collectionFemme(){
 
         return $this->createQueryBuilder('p')

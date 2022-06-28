@@ -1,0 +1,78 @@
+{% extends 'mascindye.html.twig' %}
+
+{% block title %}Hello RecapCommandeController!{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+		<div class="row text-uppercase text-center m-4">
+			<h4>RECAPITULATIF DE LA COMMANDE</h4>
+            <span> Merci {{commande.user.prenom}} pour votre achat!  </span>
+			<p>Votre commande d'un montant total de {{commande.montantTTc}} € a bien été enregistrée !</p>
+		</div>
+		<div class="row ">
+			<div class="col-sm-12 col-md-10 col-md-offset-1 m-auto">
+				<table class="table border bg-dark text-light ">
+					<thead class"bg-primary">
+						<tr>
+							<th>Produit</th>
+							<th class="text-center">Taille</th>
+							<th class="text-center">Quantité</th>
+							<th class="text-center">Prix</th>
+							<th class="text-center">Sous-total</th>
+
+						</tr>
+					</thead>
+					<tbody>
+					{# {{dump(commande.rapports)}} #}
+						{% for rapport in commande.rapports %}
+							<tr>
+								<td class="col-sm-8 col-md-6">
+									<div class="media">
+									
+											<h4 class="media-heading fs-6">
+										{{rapport.produit.nom}}   
+											</h4>
+											
+										</div>
+									</div>
+								</td>
+								<td class="col-sm-1 col-md-1 text-center {# fw-bold #}">
+									<strong>{{rapport.taille.taille}}   
+									</strong>
+								</td>
+
+								<td class="col-sm-1 col-md-1 text-center">
+									<strong>{{rapport.quantite}}  
+										</strong>
+								</td>
+								<td class="col-sm-1 col-md-1 text-center">
+									<strong>{{rapport.prix}} 
+										€</strong>
+								</td>
+								<td class="col-sm-1 col-md-1 text-center">
+									<strong>{{rapport.prix * rapport.quantite}}
+										€</strong>
+								</td>
+							</tr>
+		
+						{% endfor %}
+						<tr>
+							<td colspan="4">
+								<h5 class="text-center bg-warning">Total:</h5>
+							</td>
+							<td>
+								{{commande.montantTTc}} €  
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}

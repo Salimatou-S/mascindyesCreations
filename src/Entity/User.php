@@ -55,13 +55,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 100)]
     private $pseudo;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Avis::class, orphanRemoval: true)]
-    private $avis;
+    
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commentaire::class, orphanRemoval: true)]
+    private $commentaires;
 
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
-        $this->avis = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+       return $this->nom." ".$this->prenom;
     }
 
     public function getId(): ?int
@@ -279,30 +286,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+   
     /**
-     * @return Collection<int, Avis>
+     * @return Collection<int, Commentaire>
      */
-    public function getAvis(): Collection
+    public function getCommentaires(): Collection
     {
-        return $this->avis;
+        return $this->commentaires;
     }
 
-    public function addAvi(Avis $avi): self
+    public function addCommentaire(Commentaire $commentaire): self
     {
-        if (!$this->avis->contains($avi)) {
-            $this->avis[] = $avi;
-            $avi->setUser($this);
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeAvi(Avis $avi): self
+    public function removeCommentaire(Commentaire $commentaire): self
     {
-        if ($this->avis->removeElement($avi)) {
+        if ($this->commentaires->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)
-            if ($avi->getUser() === $this) {
-                $avi->setUser(null);
+            if ($commentaire->getUser() === $this) {
+                $commentaire->setUser(null);
             }
         }
 

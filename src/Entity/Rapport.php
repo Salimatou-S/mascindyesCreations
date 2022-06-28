@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RapportRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: RapportRepository::class)]
 class Rapport
 {
@@ -31,6 +32,10 @@ class Rapport
     #[ORM\JoinColumn(nullable: false)]
     private $taille;
 
+    public function __toString()
+    {
+       return $this->quantite."x".$this->produit->getNom();
+    }
     public function getId(): ?int
     {
         return $this->id;

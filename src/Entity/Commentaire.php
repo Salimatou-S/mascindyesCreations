@@ -2,34 +2,39 @@
 
 namespace App\Entity;
 
-use App\Repository\AvisRepository;
+use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
-#[ORM\Entity(repositoryClass: AvisRepository::class)]
-class Avis
+#[ORM\Entity(repositoryClass: CommentaireRepository::class)]
+class Commentaire
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $titre;
+
     #[ORM\Column(type: 'text')]
     private $contenu;
 
+    #[Gedmo\Timestampable(on:"create")]
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $updateAt;
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $updatedAt;
 
     #[ORM\Column(type: 'integer')]
     private $note;
 
-    #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'avis')]
+    #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'commentaires')]
     #[ORM\JoinColumn(nullable: false)]
     private $produit;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'avis')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commentaires')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
@@ -38,12 +43,24 @@ class Avis
         return $this->id;
     }
 
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
     public function getContenu(): ?string
     {
         return $this->contenu;
     }
 
-    public function setContenu(?string $contenu): self
+    public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
 
@@ -62,14 +79,14 @@ class Avis
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
-    public function setUpdateAt(\DateTimeImmutable $updateAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

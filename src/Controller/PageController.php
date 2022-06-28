@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Taille;
+/* use App\Entity\Taille; */
 use App\Entity\Produit;
 use App\Entity\Category;
-use App\Repository\ProduitRepository;
+/* use App\Repository\TailleRepository;*/
+use App\Entity\Commentaire; 
+use App\Form\CommentaireType;
+/* use App\Repository\ProduitRepository;  */
 use App\Repository\CategoryRepository;
-use App\Repository\TailleRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,11 +46,26 @@ class PageController extends AbstractController
     }
 
     #[Route('/detail/{slug}', name: 'detail_produit')]
-    public function detailProduit(Produit $produit): Response
+    public function detailProduit(Produit $produit, Request $request, ManagerRegistry $doctrine ): Response
     { 
+        $commentaire=new Commentaire();
+        $form =$this->createForm(CommentaireType::class, $commentaire);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $commentaire->setUser($this->getUser());
+            $commentaire->setProduit($produit);
+            $em=$doctrine->getManager();
+            $em->persist($commentaire);
+            $em->flush(); 
+            return $this->redirectToRoute('detail_produit', array('slug' => $produit->getSlug()));
+        }
         return $this->render('page/detailproduit.html.twig', [
             'produit' => $produit,
-          
+            'commentaire'=>$commentaire,
+            'form'=>$form->createView(),
+            
          ]);
     } 
 
@@ -55,16 +74,4 @@ class PageController extends AbstractController
     { 
         return $this->render('page/pageEnConstruction.html.twig');
     } 
-
-    /* #[Route('nouveaux/category/{slug}', name: 'nouveaux_enfant')]
-    public function nouveauxCategoryEnfant(Category $category,Produit $produits): Response
-    {
-       
-       dd($produits); 
-        return $this->render('test/index.html.twig', [
-            'produits' => $category->getproduits(),
-            'category'=>$category->getName(),
-        ]);
-    } */
-  
 }

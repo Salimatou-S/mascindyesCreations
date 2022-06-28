@@ -11,6 +11,7 @@ use App\Entity\Commande;
 use App\Entity\Fournisseur;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\Admin\ProduitCrudController;
+use App\Entity\Commentaire;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -55,13 +56,13 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('E-commerce');
         yield MenuItem::linktoRoute('Retour au site', 'fas fa-home', 'home'); 
 
-        yield MenuItem::subMenu('Produits','fas fa-list')
+        yield MenuItem::subMenu('Produits','fas fa-store')
         ->setSubItems([
             MenuItem::linkToCrud('Ajouter produit','fas fa-plus',Produit::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir produits','fas fa-eye',Produit::class),
         ]);
 
-        yield MenuItem::subMenu('Categories','fas fa-list')
+        yield MenuItem::subMenu('Categories','fa fa-tags')
         ->setSubItems([
             MenuItem::linkToCrud('Ajouter Categorie','fas fa-plus',Category::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir categories','fas fa-eye',Category::class),
@@ -95,6 +96,13 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('commande','fas fa-list')->setSubItems([
             MenuItem::linkToCrud('Voir commande','fas fa-eye',Commande::class),
         ]);
+
+        yield MenuItem::subMenu('commentaire','fas fa-list')
+        ->setPermission("ROLE_ADMIN","ROLE_MODERATEUR")
+        ->setSubItems([
+            MenuItem::linkToCrud('Voir commentaire','fas fa-eye',Commentaire::class),
+        ]);
+
 
        /*  yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Produits', 'fas fa-list', Produit::class);
