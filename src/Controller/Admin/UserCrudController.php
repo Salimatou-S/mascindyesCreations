@@ -34,8 +34,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('ville'),
             TelephoneField::new('telephone'),
             BooleanField::new('is_verified'),
-
-            /* TextEditorField::new('description'), */
+        
         ];
     }
     

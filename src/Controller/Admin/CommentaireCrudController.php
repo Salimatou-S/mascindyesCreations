@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Commentaire;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -28,4 +30,13 @@ class CommentaireCrudController extends AbstractCrudController
         ];
     }
    
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+        // ...
+        // this will forbid to create or delete entities in the backend
+        ->disable(Action::NEW, Action::EDIT )//desactiver la creation d'un commentaire par le moderateur
+    ;
+    }
 }

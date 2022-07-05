@@ -72,11 +72,15 @@
 			<div class="row ">
 				{% for produit in produits %}
 					<div class="col-lg-2  ">
-						<img src="{{app_cdn}}{{produit.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
-						<h2 class="p-2">{{produit.nom}}</h2>
+						<a href="{{ path('detail_produit', {slug: produit.slug}) }}">
+							<img src="{{app_cdn}}{{produit.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+						</a>
+							<h2 class="p-2">{{produit.nom}}</h2>
 						{# <p>Collection femme - chic et décontractée</p> #}
-						<span>{{produit.prix}} €</span>
+							<span>{{produit.prix}} €</span>
+						
 					</div>
+					
 				{% endfor %}
 				{% for produit1 in produits1 %}
 					<div class="col-lg-2 ">

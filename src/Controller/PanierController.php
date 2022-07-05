@@ -32,7 +32,7 @@ class PanierController extends AbstractController
                 'taille' => $panier['lignes'][$i]['idt'],
             ));
             
-            $panier['lignes'][$i]['produit'] = $stock[0]->getProduit(); //pour chaque ligne de stock, onrecupère l'instance du produit
+            $panier['lignes'][$i]['produit'] = $stock[0]->getProduit(); //pour chaque ligne de stock, on recupère l'instance du produit
             $panier['lignes'][$i]['taille'] = $stock[0]->getTaille();
         }
 
@@ -43,11 +43,11 @@ class PanierController extends AbstractController
     }
 
     #[Route('/add/{id}', name: 'add')]
-    public function add(Produit $produit, SessionInterface $session): Response
+    public function add(Produit $produit, SessionInterface $session, Request $request): Response
     {
         $idproduit = $produit->getId();//on recupère un produit par son id par la methode get et on stocke dans variable $idproduit
-        $idtaille = $_POST['taille'];//on recupère la taille du  produit par son id par la methode post et on stocke dans variable $idproduit (private)
-        
+        /* $idtaille = $_POST['taille']; *///on recupère la taille du  produit par son id par la methode post et on stocke dans variable $idproduit (private)
+        $idtaille =$request->get('taille');
         $panier = $session->get('panier', []);//on recupère la session qu'on stocke dans une variable panier.si jamais il n'existe pas il retourne tableau vide
         
         $panier['totalcommande'] = 0; //on initialise le montant total de la commande à 0
