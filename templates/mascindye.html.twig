@@ -68,16 +68,15 @@
 										</a>
 									</li>
 
-								{% endif %}
+								{# {% endif %} #}
 								<li class="nav-item p-2">
-									<a href="#" class="fas fa-heart"></a>
+									<a href="{{ path('page_construction')}}" class="fas fa-heart"></a>
 								</li>
-								<!-- <li class="nav-item"><a href="#" class="fas fa-user"></a></li> -->
-
+								{# {% if is_granted("ROLE_USER") %} #}
 								<li class="nav-item p-2">
 									<a href="{{ path('panier_index') }}" class="fa-solid fa-bag-shopping"></a>
 								</li>
-
+								{% endif  %}
 							</ul>
 						</div>
 						{# <div class="d-flex col-3">
@@ -174,7 +173,8 @@
 							</ul>
 							<form class="d-flex">
 								<input class="form-control me-2" type="search" placeholder="Entrez un mot-clé" aria-label="Search">
-								<button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+								{# <button class="btn btn-outline-secondary" type="submit">Rechercher</button> #}
+								<a class="btn btn-outline-secondary text-capitalize" href="{{ path('page_construction')}}" type="submit">Rechercher</a>
 							</form>
 						</div>
 					</div>

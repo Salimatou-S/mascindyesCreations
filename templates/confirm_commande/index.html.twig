@@ -8,10 +8,10 @@
 <div class="container">
 		<div class="row text-uppercase text-center m-4">
 			<h4>RECAPITULATIF DE LA COMMANDE</h4>
-            <span > Merci {{commande.user.prenom}} pour votre achat!  </span>
-			<p>Votre commande d'un montant total de {{commande.montantTTc}} € a bien été enregistrée !</p>
+            <span class="text-lowercase fs-6"> Merci <b class="text-capitalize ">{{commande.user.prenom}}</b> pour votre achat!  </span>
+			<p class="text-lowercase fs-6">Votre commande d'un montant total de {{commande.montantTTc}} € a bien été enregistrée !</p>
 		</div>
-		<div class="row ">
+		<div class="row "
 			<div class="col-sm-12 col-md-10 col-md-offset-1 m-auto">
 				<table class="table border bg-dark text-light ">
 					<thead class"bg-primary">
@@ -60,7 +60,7 @@
 						{% endfor %}
 						<tr>
 							<td colspan="4">
-								<h5 class="text-center bg-warning">Total:</h5>
+								<h5 class="text-center text-dark bg-light">Total :</h5>
 							</td>
 							<td>
 								{{commande.montantTTc}} €  
