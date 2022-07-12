@@ -3,44 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Produit;
-use App\Entity\Stock;
-use SessionIdInterface;
 use App\Repository\StockRepository;
-use App\Repository\TailleRepository;
-use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
-
 #[Route('/panier', name: 'panier_')]
 class PanierController extends AbstractController
 {
-    #[Route('/', name: 'index')]
-    public function index(SessionInterface $session, StockRepository $stockRepository): Response
-    {
-        $panier = $session->get("panier", []);//on recupère la session qu'on stocke dans une variable panier.
-
-        //on va considérer que le panier est composé de 2 tableaux: un tableau [totalcommande] pour le montant total de la commande et un tableau [lignes] regroupant les lignes de commande. Chaque ligne de commande est considéré comme un sous tableau de [lignes]
-        
-        for ($i = 0; $i < count($panier['lignes']); $i++) {
-            $stock = $stockRepository->findBy(array(// on fait appel au repository stock qui va nous permettre de recuperer la taille du produit
-                'produit' => $panier['lignes'][$i]['idp'],
-                'taille' => $panier['lignes'][$i]['idt'],
-            ));
-            
-            $panier['lignes'][$i]['produit'] = $stock[0]->getProduit(); //pour chaque ligne de stock, on recupère l'instance du produit
-            $panier['lignes'][$i]['taille'] = $stock[0]->getTaille();
-        }
-
-        return $this->render('panier/index.html.twig', [
-            'panier' => $panier // on transfère à la vue la variable $panier ('panier' est le nom pris dans twig)
-        ]);
-       
-    }
 
     #[Route('/add/{id}', name: 'add')]
     public function add(Produit $produit, SessionInterface $session, Request $request): Response
@@ -53,7 +25,6 @@ class PanierController extends AbstractController
         $panier['totalcommande'] = 0; //on initialise le montant total de la commande à 0
         $new = 1;//on part du principe qu'on va créer une ligne dans le panier quand on rajoute un produit. 
         if (isset($panier['lignes'])) {//on verifie si le sous tableau ligne est defini,
-           
             /* $panier['totalcommande'] = 0; */
             for ($i = 0; $i < count($panier['lignes']); $i++) {// on fait une boucle sur les lignes du panier
                 if ($panier['lignes'][$i]['idp'] == $idproduit && $panier['lignes'][$i]['idt'] == $idtaille) {
@@ -82,4 +53,41 @@ class PanierController extends AbstractController
 
         return $this->redirectToRoute("panier_index");// on redirige vers une route
     }
+
+    #[Route('/', name: 'index')]
+    public function index(SessionInterface $session, StockRepository $stockRepository): Response
+    {
+        $panier = $session->get("panier", []);//on recupère la session qu'on stocke dans une variable panier.
+
+        //on va considérer que le panier est composé de 2 tableaux: un tableau [totalcommande] pour le montant total de la commande et un tableau [lignes] regroupant les lignes de commande. Chaque ligne de commande est considéré comme un sous tableau de [lignes]
+        
+        for ($i = 0; $i < count($panier['lignes']); $i++) {
+            $stock = $stockRepository->findBy(array(// on fait appel au repository stock qui va nous permettre de recuperer la taille du produit
+                'produit' => $panier['lignes'][$i]['idp'],
+                'taille' => $panier['lignes'][$i]['idt'],
+            ));
+            
+            $panier['lignes'][$i]['produit'] = $stock[0]->getProduit(); //pour chaque ligne de stock, on recupère l'instance du produit
+            $panier['lignes'][$i]['taille'] = $stock[0]->getTaille();
+        }
+
+        return $this->render('panier/index.html.twig', [
+            'panier' => $panier // on transfère à la vue la variable $panier ('panier' est le nom pris dans twig)
+        ]);
+    } 
+    
+    #[Route('/panier/remove/{id}', name:'remove')]
+    public function remove (Produit $produit, SessionInterface $session, Request $request){
+        $idproduit = $produit->getId();
+        $idtaille =$request->get('taille');
+        $panier = $session->get('panier', []);
+            for ($i = 0; $i < count($panier['lignes']); $i++) {
+                if ($panier['lignes'][$i]['idp'] == $idproduit && $panier['lignes'][$i]['idt'] == $idtaille) {
+                    unset($panier['lignes'][$i]);
+            }
+            $session->remove("panier");
+            $session->set("panier", $panier);
+            return $this->redirectToRoute("panier_index");
+        }
+    } 
 }

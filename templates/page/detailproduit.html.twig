@@ -82,11 +82,19 @@
 						{% endif %}
 						<div>
 							<h5 class="text-uppercase fs-5 py-2">
-								Avis clients {# (
-								{{moyenneCommentaire}})
-								{{(produit.commentaires | length)}} #}
+								Avis clients
+								
+							</h5>
+							{% if produit.commentaires | length > 0 %}
+								<h5 class="text-primary bg-transparent py-2 fs-6">Note moyenne:
+									{{moyenneCommentaire}}/5 basée sur
+									{{(produit.commentaires | length)}}
+									commentaires
 								</h5>
-								<h5 class="text-primary bg-transparent py-2 fs-6">Note moyenne: {{moyenneCommentaire}}/5 basée sur {{(produit.commentaires | length)}} commentaires </h5>
+							{% else %}
+								<h5 class="text-primary bg-transparent py-2 fs-6">Aucun commentaire
+								</h5>
+							{% endif %}
 
 						</div>
 

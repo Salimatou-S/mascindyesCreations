@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-{# {{dump(panier)}} #}
+	{# {{dump(panier)}} #}
 	<div class="container">
 		<div class="row text-uppercase text-center m-4">
 			<h4>panier</h4>
@@ -19,6 +19,7 @@
 							<th class="text-center">Quantité</th>
 							<th class="text-center">Prix</th>
 							<th class="text-center">Sous-total</th>
+							<th class="text-center"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,6 +57,11 @@
 								<td class="col-sm-1 col-md-1 text-center">
 									<strong>{{element.totalligne}}
 										€</strong>
+								</td>
+								<td class="col-sm-1 col-md-1 text-center">
+									<a href="{{path('panier_remove',{id:element.produit.id})}}" class=" btn btn-danger btn-sm">
+									<i class="fas fa-trash"></i>
+									</a>
 								</td>
 							</tr>
 						{% endfor %}
