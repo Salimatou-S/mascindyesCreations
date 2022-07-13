@@ -34,7 +34,7 @@ class Rapport
 
     public function __toString()
     {
-       return $this->quantite."x".$this->produit->getNom();
+       return $this->quantite." x ". $this->produit->getNom() . " Taille = ".$this->taille->getTaille();
     }
     public function getId(): ?int
     {
