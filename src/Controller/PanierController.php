@@ -83,12 +83,12 @@ class PanierController extends AbstractController
        /*  dd($taille); */
         $idproduit = $produit->getId();
         $idtaille = $taille->getId();
-        dump($idtaille);
+        /* dump($idtaille); */
         $panier = $session->get('panier', []);
-        dump($panier);
+       /*  dump($panier); */
         for ($i = 0; $i < count($panier['lignes']); $i++) {
             if ($panier['lignes'][$i]['idp'] == $idproduit && $panier['lignes'][$i]['idt'] == $idtaille) {
-                dump($i);
+               /*  dump($i); */
                 unset($panier['lignes'][$i]);
             }
            
@@ -98,7 +98,7 @@ class PanierController extends AbstractController
             $panier['totalcommande'] += $panier['lignes'][$i]['totalligne']; // à chaque tour de boucle, on rajoute au totalcommande la valeur du montant de la ligne [totalligne]
         }
        /*  dd($panier); */
-        $session->remove("panier");
+       /*  $session->remove("panier"); */
         $session->set("panier", $panier);
         return $this->redirectToRoute("panier_index");
     }

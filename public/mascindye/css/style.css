@@ -314,6 +314,11 @@ max-width: 1170px;
 text-align: center; 
 }
 
+.titre{
+  z-index: -2;
+}
+
+
 footer.nb-footer .about p {
 font-size: 13px;
 color: #999;
