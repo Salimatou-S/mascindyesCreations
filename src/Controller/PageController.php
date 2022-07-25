@@ -21,13 +21,9 @@ class PageController extends AbstractController
     #[Route('/category/{slug}', name: 'category_parent')]
 
     public function categoryParent(Category $category, CategoryRepository $categoryRepository): Response
-    { /* dd($category); */
+    { 
         $produits = $categoryRepository->findProduitsByParentCategory($category);
 
-       /*  foreach ($produits as $produits) { */
-           /*  dump($produit); 
-            
-        }*//*  dd(''); */
         return $this->render('page/produits.html.twig', [
                 'produits' => $produits,
                 'category'=>$category->getName(),
@@ -38,7 +34,7 @@ class PageController extends AbstractController
     #[Route('/subcategory/category/{slug}', name: 'category_enfant')]
     public function categoryEnfant(Category $category): Response
     {
-       /*  dd($category); */
+      
         return $this->render('page/produits.html.twig', [
             'produits' => $category->getproduits(),
             'category'=>$category->getName(),
@@ -57,8 +53,9 @@ class PageController extends AbstractController
             $commentaire->setUser($this->getUser());
             $commentaire->setProduit($produit);
             $em=$doctrine->getManager();
-            $em->persist($commentaire);
-            $em->flush(); 
+            $em->persist($commentaire);// informe Doctrine que l’on veut ajouter l'objet commentaire dans la base de donnees 
+            
+            $em->flush(); // Executer la requête et d’envoyer tout ce qui à été persisté avant a la BD
             return $this->redirectToRoute('detail_produit', array('slug' => $produit->getSlug()));
         }
         return $this->render('page/detailproduit.html.twig', [

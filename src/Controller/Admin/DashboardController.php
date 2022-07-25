@@ -51,7 +51,6 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('MascindyesCreations');
-           
     }
 
     public function configureMenuItems(): iterable
@@ -94,6 +93,11 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir user','fas fa-eye',User::class),            
         ]);
 
+        yield MenuItem::subMenu('commentaire','fas fa-list')
+        ->setSubItems([
+            MenuItem::linkToCrud('Voir commentaire','fas fa-eye',Commentaire::class)
+        ]);
+        
         yield MenuItem::subMenu('stock','fas fa-list')
         ->setPermission('ROLE_ADMIN')
         ->setSubItems([
@@ -107,11 +111,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir commande','fas fa-eye',Commande::class),
         ]);
 
-        yield MenuItem::subMenu('commentaire','fas fa-list')
-       /*  ->setPermission("ROLE_ADMIN","ROLE_MODERATEUR") */
-        ->setSubItems([
-            MenuItem::linkToCrud('Voir commentaire','fas fa-eye',Commentaire::class)
-        ]);
+       
 
 
        /*  yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');

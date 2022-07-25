@@ -18,17 +18,14 @@ class CommentaireType extends AbstractType
         $builder
             ->add('titre')
             ->add('contenu', TextareaType::class)
-            /* ->add('createdAt') */
-           /*  ->add('updatedAt') */
             ->add('note', IntegerType::class,[
                 'attr'=>[
                     'min'=>1, 
                     'max'=>5
                 ],
             ])
-           /*  ->add('produit') */
             ->add('Enregistrer', SubmitType::class);
-            /* ->add('user') */
+            
         ;
     }
 

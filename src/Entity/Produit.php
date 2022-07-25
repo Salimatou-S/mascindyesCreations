@@ -64,12 +64,8 @@ class Produit
     #[ORM\Column(type: 'string', length: 50)]
     private $slug;
 
-   
-
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Commentaire::class, orphanRemoval: true)]
     private $commentaires;
-
-  
 
     public function __construct()
     {
@@ -78,13 +74,10 @@ class Produit
         $this->commentaires = new ArrayCollection();
     }
 
-
     public function __toString()
     {
-        
         return $this->nom;
     }
-
 
     public function getId(): ?int
     {

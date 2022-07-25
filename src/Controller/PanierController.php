@@ -21,7 +21,7 @@ class PanierController extends AbstractController
         $idproduit = $produit->getId(); //on recupère un produit par son id par la methode get et on stocke dans variable $idproduit
         /* $idtaille = $_POST['taille']; */ //on recupère la taille du  produit par son id par la methode post et on stocke dans variable $idproduit (private)
         $idtaille = $request->get('taille');
-        $panier = $session->get('panier', []); //on recupère la session qu'on stocke dans une variable panier.si jamais il n'existe pas il retourne tableau vide
+        $panier = $session->get('panier', []); //on recupère le panier à partir de la session qu'on stocke dans une variable panier.si jamais il n'existe pas il retourne tableau vide
 
         $panier['totalcommande'] = 0; //on initialise le montant total de la commande à 0
         $new = 1; //on part du principe qu'on va créer une ligne dans le panier quand on rajoute un produit. 
@@ -78,7 +78,7 @@ class PanierController extends AbstractController
     }
 
     #[Route('/panier/remove/{id}/{taille}', name: 'remove')]
-    public function remove(Produit $produit, Taille $taille, SessionInterface $session, Request $request)
+    public function remove(Produit $produit, Taille $taille, SessionInterface $session)
     {
        /*  dd($taille); */
         $idproduit = $produit->getId();
@@ -97,9 +97,10 @@ class PanierController extends AbstractController
         for ($i = 0; $i < count($panier['lignes']); $i++) {
             $panier['totalcommande'] += $panier['lignes'][$i]['totalligne']; // à chaque tour de boucle, on rajoute au totalcommande la valeur du montant de la ligne [totalligne]
         }
-       /*  dd($panier); */
-       /*  $session->remove("panier"); */
+       
         $session->set("panier", $panier);
         return $this->redirectToRoute("panier_index");
     }
 }
+
+

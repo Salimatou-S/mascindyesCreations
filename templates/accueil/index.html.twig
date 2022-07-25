@@ -1,14 +1,14 @@
 {% extends 'mascindye.html.twig' %}
 
-{% block title %}Hello TestController!
-{% endblock %}
+{# {% block title %}Hello TestController!
+{% endblock %} #}
 
 {% block body %}
 
 	<main>
 		<div class="container-fluid ">
 			<div class="col-lg ">
-				<div id="carouselExampleFade " class="carousel slide carousel-fade" data-bs-ride="carousel">
+				<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img src="{{asset('mascindye/images/montage1car.jpg')}}" class="d-block w-100" alt="...">
@@ -24,7 +24,7 @@
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Previous</span>
 					</button>
-					<button class="carousel-control-next " type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>
@@ -54,47 +54,40 @@
 					<img src="{{asset('mascindye/images/accessoires3.jpg')}}" height="350" alt="...">
 					<h2 class="text-center accessoires">ACCESSOIRES</h2>
 					<p>
-						<a class="btn btn-primary" href="#" role="button">Découvrir</a>
+						<a class="btn btn-primary" href="{{path('category_parent',{slug:'accessoires'})}}" role="button">Découvrir</a>
 					</p>
 				</div>
 			</div>
-			<!-- <div class="col-lg-5 d-none d-lg-block">
-																					                <div class="embed-responsive embed-responsive-16by9  ">
-																					                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Xa29UDKMSRo "
-																					                        height="470px" width="450px" allowfullscreen></iframe>
-																					                </div>
-																					            </div>  -->
 		</div>
 		<div class="nouv">
 			<p class="nouv">Nouveautés</p>
 		</div>
 		<div class="container marketing ">
-			<div class="row ">
+			<div class="row row-cols-sm-2 {# row-cols-md-3 #} row-cols-lg-4 g-5 m-3">
 				{% for produit in produits %}
 					<div class="col-lg-2  ">
 						<a href="{{ path('detail_produit', {slug: produit.slug}) }}">
 							<img src="{{app_cdn}}{{produit.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
 						</a>
-							<h2 class="p-2">{{produit.nom}}</h2>
-						{# <p>Collection femme - chic et décontractée</p> #}
-							<span>{{produit.prix}} €</span>
-						
+						<h2 class="p-2">{{produit.nom}}</h2>
+						<span>{{produit.prix}}
+							€</span>
 					</div>
-					
 				{% endfor %}
 				{% for produit1 in produits1 %}
 					<div class="col-lg-2 ">
 						<img src="{{app_cdn}}{{produit1.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
 						<h2 class="p-2">{{produit1.nom}}</h2>
-						<span>{{produit1.prix}} €</span>
-						{# <p>Collection femme - chic et décontractée</p>																				<span>150€</span> #}
+						<span>{{produit1.prix}}
+							€</span>
 					</div>
 				{% endfor %}
 				{% for produit2 in produits2 %}
 					<div class="col-lg-2 ">
 						<img src="{{app_cdn}}{{produit2.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
 						<h2 class="p-2">{{produit2.nom}}</h2>
-						<span>{{produit2.prix}} €</span>
+						<span>{{produit2.prix}}
+							€</span>
 						{# <p>Collection femme - chic et décontractée</p>																				<span>150€</span> #}
 					</div>
 				{% endfor %}
