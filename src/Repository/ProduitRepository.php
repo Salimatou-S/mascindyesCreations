@@ -43,23 +43,56 @@ class ProduitRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLastProduitsFemme(int $nb =2)
+    public function findLastProduitsFemmeWax(int $nb =2)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.category = 5')
+            /* ->orWhere('p.category = 5') */
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findLastProduitsFemmeBazin(int $nb =1)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.category = 4')
-            ->orWhere('p.category = 5')
+            /* ->orWhere('p.category = 5') */
             ->orderBy('p.createdAt', 'DESC')
-            ->setMaxResults($nb)
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
         ;
     }
 
-    public function findLastProduitsFille(int $nb =2)
+    public function findLastProduitsFilleWax(int $nb =1)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.category = 7')
-            ->orWhere('p.category = 8')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findLastProduitsFilleBazin(int $nb =1)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.category = 8')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findLastProduitsSac(int $nb =1)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.category =10')
             ->orderBy('p.createdAt', 'DESC')
             ->setMaxResults($nb)
             ->getQuery()
@@ -67,11 +100,10 @@ class ProduitRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findLastProduitsAccessoires(int $nb =2)
+    public function findLastProduitsBijou(int $nb =1)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.category =10')
-            ->orWhere('p.category = 11')
+            ->andWhere('p.category =11')
             ->orderBy('p.createdAt', 'DESC')
             ->setMaxResults($nb)
             ->getQuery()
@@ -94,6 +126,7 @@ class ProduitRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
         ->andWhere('p.category = 5')
         ->orderBy('p.createdAt','DESC')
+        ->setMaxResults(1)
         ->getQuery()
         ->getResult();
     } */

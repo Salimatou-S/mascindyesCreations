@@ -26,7 +26,7 @@ class PanierController extends AbstractController
         $panier['totalcommande'] = 0; //on initialise le montant total de la commande à 0
         $new = 1; //on part du principe qu'on va créer une ligne dans le panier quand on rajoute un produit. 
         if (isset($panier['lignes'])) { //on verifie si le sous tableau ligne est defini,
-            /* $panier['totalcommande'] = 0; */
+            /* $panier['totalcommande'] = 0; */ 
             for ($i = 0; $i < count($panier['lignes']); $i++) { // on fait une boucle sur les lignes du panier
                 if ($panier['lignes'][$i]['idp'] == $idproduit && $panier['lignes'][$i]['idt'] == $idtaille) {
                     $panier['lignes'][$i]['qt']++; //si une ligne existe déjà et que le couple identifiant de la ligne (idp et idt) est identique, on incremente la quantité de 1.

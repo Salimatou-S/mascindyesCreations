@@ -12,15 +12,21 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(ProduitRepository $produitRepository): Response
     {
-        $produits = $produitRepository->findLastProduitsFemme();
-        $produits1 = $produitRepository->findLastProduitsFille();
-        $produits2 = $produitRepository->findLastProduitsAccessoires();
+        $femmeWax = $produitRepository->findLastProduitsFemmeWax();
+        $femmeBazin = $produitRepository->findLastProduitsFemmeBazin();
+        $filleWax = $produitRepository->findLastProduitsFilleWax();
+        $filleBazin = $produitRepository->findLastProduitsFilleBazin();
+        $sac = $produitRepository->findLastProduitsSac();
+        $bijou = $produitRepository->findLastProduitsBijou();
         
         return $this->render('accueil/index.html.twig', [
-            'produits' => $produits,
-            'produits1'=>$produits1,
-            'produits2'=>$produits2
-            
+            'femmeWax' => $femmeWax,
+            'femmeBazin'=>$femmeBazin,
+            'filleWax'=>$filleWax,
+            'filleBazin'=>$filleBazin,
+            'sac'=>$sac,
+            'bijou'=>$bijou,
         ]);
     }
 }
+//serializer: transformer les infos dans une variable php en j.son

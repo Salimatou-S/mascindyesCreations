@@ -64,31 +64,63 @@
 		</div>
 		<div class="container marketing ">
 			<div class="row row-cols-sm-2 {# row-cols-md-3 #} row-cols-lg-4 g-5 m-3">
-				{% for produit in produits %}
+				{% for femmeWax in femmeWax %}
 					<div class="col-lg-2  ">
-						<a href="{{ path('detail_produit', {slug: produit.slug}) }}">
-							<img src="{{app_cdn}}{{produit.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+						<a href="{{ path('detail_produit', {slug: femmeWax.slug}) }}">
+							<img src="{{app_cdn}}{{femmeWax.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+							</a>
+						<h2 class="p-2">{{femmeWax.nom}}</h2>
+						<span>{{femmeWax.prix}} €</span>
+					</div>
+				{% endfor %}
+				{% for femmeBazin in femmeBazin %}
+					<div class="col-lg-2 ">
+						<a href="{{ path('detail_produit', {slug: femmeBazin.slug}) }}">
+							<img src="{{app_cdn}}{{femmeBazin.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
 						</a>
-						<h2 class="p-2">{{produit.nom}}</h2>
-						<span>{{produit.prix}}
-							€</span>
+						<h2 class="p-2">{{femmeBazin.nom}}</h2>
+						<span>{{femmeBazin.prix}}
+						€</span>
+								
 					</div>
 				{% endfor %}
-				{% for produit1 in produits1 %}
+				{% for filleWax in filleWax %}
 					<div class="col-lg-2 ">
-						<img src="{{app_cdn}}{{produit1.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
-						<h2 class="p-2">{{produit1.nom}}</h2>
-						<span>{{produit1.prix}}
-							€</span>
+						<a href="{{ path('detail_produit', {slug: filleWax.slug}) }}">
+							<img src="{{app_cdn}}{{filleWax.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+						</a>
+						<h2 class="p-2">{{filleWax.nom}}</h2>
+						<span>{{filleWax.prix}}
+						€</span>
+						
 					</div>
 				{% endfor %}
-				{% for produit2 in produits2 %}
+				{% for filleBazin in filleBazin %}
 					<div class="col-lg-2 ">
-						<img src="{{app_cdn}}{{produit2.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
-						<h2 class="p-2">{{produit2.nom}}</h2>
-						<span>{{produit2.prix}}
-							€</span>
-						{# <p>Collection femme - chic et décontractée</p>																				<span>150€</span> #}
+						<a href="{{ path('detail_produit', {slug: filleBazin.slug}) }}">
+							<img src="{{app_cdn}}{{filleBazin.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+						</a>
+						<h2 class="p-2">{{filleBazin.nom}}</h2>
+						<span>{{filleBazin.prix}}
+						€</span>
+					</div>
+				{% endfor %}
+				{% for sac in sac %}
+					<div class="col-lg-2 ">
+						<a href="{{ path('detail_produit', {slug: sac.slug}) }}">
+							<img src="{{app_cdn}}{{sac.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+						</a>	
+						<h2 class="p-2">{{sac.nom}}</h2>
+						<span>{{sac.prix}}€</span>
+					</div>
+				{% endfor %}
+				{% for bijou in bijou %}
+					<div class="col-lg-2 ">
+						<a href="{{ path('detail_produit', {slug: bijou.slug}) }}">
+							<img src="{{app_cdn}}{{bijou.urlImage}}" width="250" height="300" class="img-fluid  " alt="...">
+						</a>	
+						<h2 class="p-2">{{bijou.nom}}</h2>
+						<span>{{bijou.prix}}€</span>
 					</div>
 				{% endfor %}
 			</div>
